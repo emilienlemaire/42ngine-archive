@@ -244,11 +244,20 @@ COTIRE_UNITY_SOURCE_EXCLUDE_EXTENSIONS:STRING=m;mm
 //Enable cotire verbose output?
 COTIRE_VERBOSE:BOOL=OFF
 
+//Path to a file.
+CPPLOGGER_INCLUDE_DIR:PATH=/usr/local/include
+
+//Path to a library.
+CPPLOGGER_LIBRARY:FILEPATH=/usr/local/lib/libCppLogger.a
+
 //Path to a library.
 CppLogger:FILEPATH=CppLogger-NOTFOUND
 
 //Value Computed by CMake
 CppLogger_BINARY_DIR:STATIC=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger
+
+//The directory containing a CMake configuration file for CppLogger.
+CppLogger_DIR:PATH=CppLogger_DIR-NOTFOUND
 
 //Value Computed by CMake
 CppLogger_SOURCE_DIR:STATIC=/Volumes/LaCie/CLionProjects/42ngine/libs/CppLogger
@@ -433,7 +442,7 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //42ngine cotire message.
-COTIREMSG_42ngine:INTERNAL=CXX target 42ngine cotired without precompiled header. Too few applicable sources.
+COTIREMSG_42ngine:INTERNAL=CXX target 42ngine cotired.
 //Details about finding GLEW
 FIND_PACKAGE_MESSAGE_DETAILS_GLEW:INTERNAL=[/usr/local/include][/usr/local/lib/libGLEW.dylib][v2.1.0(2.1.0)]
 //ADVANCED property for variable: GLEW_INCLUDE_DIR

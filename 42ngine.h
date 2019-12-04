@@ -5,4 +5,3 @@
 #pragma once
 
 #include "src/Window.h"
-#include "libs/CppLogger/Log.h"

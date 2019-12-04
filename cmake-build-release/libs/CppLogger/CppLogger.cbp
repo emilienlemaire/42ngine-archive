@@ -25,8 +25,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Volumes/LaCie/CLionProjects/42ngine/libs"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
@@ -47,8 +47,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Volumes/LaCie/CLionProjects/42ngine/libs"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
@@ -70,6 +70,9 @@
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/cmake/modules/FindCppLogger.cmake">
+			<Option virtualFolder="CMake Files\cmake\modules\"/>
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/cmake/modules/cotire.cmake">
 			<Option virtualFolder="CMake Files\cmake\modules\"/>

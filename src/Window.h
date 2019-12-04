@@ -6,7 +6,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "../libs/CppLogger/Log.h"
+#include <Log.h>
 
 class Window {
 private:

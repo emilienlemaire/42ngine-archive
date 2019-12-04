@@ -48,14 +48,13 @@ CMAKE_SOURCE_DIR = /Volumes/LaCie/CLionProjects/42ngine
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release
 
-# Include any dependencies generated for this target.
-include CMakeFiles/42ngine.dir/depend.make
+# Utility rule file for 42ngine_pch.
 
 # Include the progress variables for this target.
-include CMakeFiles/42ngine.dir/progress.make
+include CMakeFiles/42ngine_pch.dir/progress.make
 
-# Include the compile flags for this target's objects.
-include CMakeFiles/42ngine.dir/flags.make
+CMakeFiles/42ngine_pch: cotire/42ngine_CXX_prefix.hxx.pch
+
 
 cotire/42ngine_CXX_prefix.hxx.pch: cotire/42ngine_CXX_prefix.hxx
 cotire/42ngine_CXX_prefix.hxx.pch: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
@@ -79,67 +78,26 @@ cotire/42ngine_CXX_unity.cxx: 42ngine_CXX_cotire.cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating CXX unity source cotire/42ngine_CXX_unity.cxx"
 	cd /Volumes/LaCie/CLionProjects/42ngine && "/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /Volumes/LaCie/CLionProjects/42ngine/cmake/modules/cotire.cmake unity /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/42ngine_CXX_cotire.cmake /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/cotire/42ngine_CXX_unity.cxx
 
-CMakeFiles/42ngine.dir/src/Window.cpp.o: CMakeFiles/42ngine.dir/flags.make
-CMakeFiles/42ngine.dir/src/Window.cpp.o: ../src/Window.cpp
-CMakeFiles/42ngine.dir/src/Window.cpp.o: cotire/42ngine_CXX_prefix.hxx.pch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/42ngine.dir/src/Window.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/42ngine.dir/src/Window.cpp.o -c /Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp
+42ngine_pch: CMakeFiles/42ngine_pch
+42ngine_pch: cotire/42ngine_CXX_prefix.hxx.pch
+42ngine_pch: cotire/42ngine_CXX_prefix.hxx
+42ngine_pch: cotire/42ngine_CXX_prefix.cxx
+42ngine_pch: cotire/42ngine_CXX_prefix.cxx.log
+42ngine_pch: cotire/42ngine_CXX_unity.cxx
+42ngine_pch: CMakeFiles/42ngine_pch.dir/build.make
 
-CMakeFiles/42ngine.dir/src/Window.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/42ngine.dir/src/Window.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp > CMakeFiles/42ngine.dir/src/Window.cpp.i
-
-CMakeFiles/42ngine.dir/src/Window.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/42ngine.dir/src/Window.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp -o CMakeFiles/42ngine.dir/src/Window.cpp.s
-
-CMakeFiles/42ngine.dir/src/VertexArray.cpp.o: CMakeFiles/42ngine.dir/flags.make
-CMakeFiles/42ngine.dir/src/VertexArray.cpp.o: ../src/VertexArray.cpp
-CMakeFiles/42ngine.dir/src/VertexArray.cpp.o: cotire/42ngine_CXX_prefix.hxx.pch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/42ngine.dir/src/VertexArray.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/42ngine.dir/src/VertexArray.cpp.o -c /Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp
-
-CMakeFiles/42ngine.dir/src/VertexArray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/42ngine.dir/src/VertexArray.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp > CMakeFiles/42ngine.dir/src/VertexArray.cpp.i
-
-CMakeFiles/42ngine.dir/src/VertexArray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/42ngine.dir/src/VertexArray.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp -o CMakeFiles/42ngine.dir/src/VertexArray.cpp.s
-
-# Object files for target 42ngine
-42ngine_OBJECTS = \
-"CMakeFiles/42ngine.dir/src/Window.cpp.o" \
-"CMakeFiles/42ngine.dir/src/VertexArray.cpp.o"
-
-# External object files for target 42ngine
-42ngine_EXTERNAL_OBJECTS =
-
-lib42ngine.dylib: CMakeFiles/42ngine.dir/src/Window.cpp.o
-lib42ngine.dylib: CMakeFiles/42ngine.dir/src/VertexArray.cpp.o
-lib42ngine.dylib: CMakeFiles/42ngine.dir/build.make
-lib42ngine.dylib: /usr/local/lib/libglfw.3.3.dylib
-lib42ngine.dylib: /usr/local/lib/libGLEW.dylib
-lib42ngine.dylib: /usr/local/lib/libCppLogger.a
-lib42ngine.dylib: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
-lib42ngine.dylib: CMakeFiles/42ngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library lib42ngine.dylib"
-	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/42ngine.dir/link.txt --verbose=$(VERBOSE)
+.PHONY : 42ngine_pch
 
 # Rule to build all files generated by this target.
-CMakeFiles/42ngine.dir/build: lib42ngine.dylib
+CMakeFiles/42ngine_pch.dir/build: 42ngine_pch
 
-.PHONY : CMakeFiles/42ngine.dir/build
+.PHONY : CMakeFiles/42ngine_pch.dir/build
 
-CMakeFiles/42ngine.dir/clean:
-	$(CMAKE_COMMAND) -P CMakeFiles/42ngine.dir/cmake_clean.cmake
-.PHONY : CMakeFiles/42ngine.dir/clean
+CMakeFiles/42ngine_pch.dir/clean:
+	$(CMAKE_COMMAND) -P CMakeFiles/42ngine_pch.dir/cmake_clean.cmake
+.PHONY : CMakeFiles/42ngine_pch.dir/clean
 
-CMakeFiles/42ngine.dir/depend: cotire/42ngine_CXX_prefix.hxx.pch
-CMakeFiles/42ngine.dir/depend: cotire/42ngine_CXX_prefix.hxx
-CMakeFiles/42ngine.dir/depend: cotire/42ngine_CXX_prefix.cxx
-CMakeFiles/42ngine.dir/depend: cotire/42ngine_CXX_prefix.cxx.log
-CMakeFiles/42ngine.dir/depend: cotire/42ngine_CXX_unity.cxx
-	cd /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Volumes/LaCie/CLionProjects/42ngine /Volumes/LaCie/CLionProjects/42ngine /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles/42ngine.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : CMakeFiles/42ngine.dir/depend
+CMakeFiles/42ngine_pch.dir/depend:
+	cd /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Volumes/LaCie/CLionProjects/42ngine /Volumes/LaCie/CLionProjects/42ngine /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles/42ngine_pch.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : CMakeFiles/42ngine_pch.dir/depend
 

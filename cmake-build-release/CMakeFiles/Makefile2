@@ -59,9 +59,11 @@ all: libs/CppLogger/all
 .PHONY : all
 
 # The main recursive "clean" target.
-clean: CMakeFiles/42ngine_unity.dir/clean
-clean: CMakeFiles/clean_cotire.dir/clean
+clean: CMakeFiles/all_pch.dir/clean
 clean: CMakeFiles/all_unity.dir/clean
+clean: CMakeFiles/42ngine_unity.dir/clean
+clean: CMakeFiles/42ngine_pch.dir/clean
+clean: CMakeFiles/clean_cotire.dir/clean
 clean: CMakeFiles/42ngine.dir/clean
 clean: libs/CppLogger/clean
 
@@ -73,18 +75,72 @@ preinstall: libs/CppLogger/preinstall
 .PHONY : preinstall
 
 #=============================================================================
+# Target rules for target CMakeFiles/all_pch.dir
+
+# All Build rule for target.
+CMakeFiles/all_pch.dir/all: CMakeFiles/42ngine_pch.dir/all
+	$(MAKE) -f CMakeFiles/all_pch.dir/build.make CMakeFiles/all_pch.dir/depend
+	$(MAKE) -f CMakeFiles/all_pch.dir/build.make CMakeFiles/all_pch.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num= "Built target all_pch"
+.PHONY : CMakeFiles/all_pch.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/all_pch.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/all_pch.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 0
+.PHONY : CMakeFiles/all_pch.dir/rule
+
+# Convenience name for target.
+all_pch: CMakeFiles/all_pch.dir/rule
+
+.PHONY : all_pch
+
+# clean rule for target.
+CMakeFiles/all_pch.dir/clean:
+	$(MAKE) -f CMakeFiles/all_pch.dir/build.make CMakeFiles/all_pch.dir/clean
+.PHONY : CMakeFiles/all_pch.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/all_unity.dir
+
+# All Build rule for target.
+CMakeFiles/all_unity.dir/all: CMakeFiles/42ngine_unity.dir/all
+	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/depend
+	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num= "Built target all_unity"
+.PHONY : CMakeFiles/all_unity.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/all_unity.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/all_unity.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 0
+.PHONY : CMakeFiles/all_unity.dir/rule
+
+# Convenience name for target.
+all_unity: CMakeFiles/all_unity.dir/rule
+
+.PHONY : all_unity
+
+# clean rule for target.
+CMakeFiles/all_unity.dir/clean:
+	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/clean
+.PHONY : CMakeFiles/all_unity.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/42ngine_unity.dir
 
 # All Build rule for target.
-CMakeFiles/42ngine_unity.dir/all: libs/CppLogger/CMakeFiles/CppLogger.dir/all
+CMakeFiles/42ngine_unity.dir/all:
 	$(MAKE) -f CMakeFiles/42ngine_unity.dir/build.make CMakeFiles/42ngine_unity.dir/depend
 	$(MAKE) -f CMakeFiles/42ngine_unity.dir/build.make CMakeFiles/42ngine_unity.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=3,4,5 "Built target 42ngine_unity"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=12,13,14 "Built target 42ngine_unity"
 .PHONY : CMakeFiles/42ngine_unity.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/42ngine_unity.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/42ngine_unity.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 0
 .PHONY : CMakeFiles/42ngine_unity.dir/rule
@@ -100,13 +156,40 @@ CMakeFiles/42ngine_unity.dir/clean:
 .PHONY : CMakeFiles/42ngine_unity.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/42ngine_pch.dir
+
+# All Build rule for target.
+CMakeFiles/42ngine_pch.dir/all:
+	$(MAKE) -f CMakeFiles/42ngine_pch.dir/build.make CMakeFiles/42ngine_pch.dir/depend
+	$(MAKE) -f CMakeFiles/42ngine_pch.dir/build.make CMakeFiles/42ngine_pch.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=8,9,10,11 "Built target 42ngine_pch"
+.PHONY : CMakeFiles/42ngine_pch.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/42ngine_pch.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/42ngine_pch.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 0
+.PHONY : CMakeFiles/42ngine_pch.dir/rule
+
+# Convenience name for target.
+42ngine_pch: CMakeFiles/42ngine_pch.dir/rule
+
+.PHONY : 42ngine_pch
+
+# clean rule for target.
+CMakeFiles/42ngine_pch.dir/clean:
+	$(MAKE) -f CMakeFiles/42ngine_pch.dir/build.make CMakeFiles/42ngine_pch.dir/clean
+.PHONY : CMakeFiles/42ngine_pch.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/clean_cotire.dir
 
 # All Build rule for target.
 CMakeFiles/clean_cotire.dir/all:
 	$(MAKE) -f CMakeFiles/clean_cotire.dir/build.make CMakeFiles/clean_cotire.dir/depend
 	$(MAKE) -f CMakeFiles/clean_cotire.dir/build.make CMakeFiles/clean_cotire.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=8 "Built target clean_cotire"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=17 "Built target clean_cotire"
 .PHONY : CMakeFiles/clean_cotire.dir/all
 
 # Build rule for subdir invocation for target.
@@ -127,45 +210,18 @@ CMakeFiles/clean_cotire.dir/clean:
 .PHONY : CMakeFiles/clean_cotire.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/all_unity.dir
-
-# All Build rule for target.
-CMakeFiles/all_unity.dir/all: CMakeFiles/42ngine_unity.dir/all
-	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/depend
-	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num= "Built target all_unity"
-.PHONY : CMakeFiles/all_unity.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/all_unity.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 5
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/all_unity.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 0
-.PHONY : CMakeFiles/all_unity.dir/rule
-
-# Convenience name for target.
-all_unity: CMakeFiles/all_unity.dir/rule
-
-.PHONY : all_unity
-
-# clean rule for target.
-CMakeFiles/all_unity.dir/clean:
-	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/clean
-.PHONY : CMakeFiles/all_unity.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/42ngine.dir
 
 # All Build rule for target.
-CMakeFiles/42ngine.dir/all: libs/CppLogger/CMakeFiles/CppLogger.dir/all
+CMakeFiles/42ngine.dir/all:
 	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/depend
 	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=1,2 "Built target 42ngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target 42ngine"
 .PHONY : CMakeFiles/42ngine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/42ngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/42ngine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles 0
 .PHONY : CMakeFiles/42ngine.dir/rule
@@ -205,7 +261,7 @@ libs/CppLogger/preinstall:
 libs/CppLogger/CMakeFiles/CppLogger.dir/all:
 	$(MAKE) -f libs/CppLogger/CMakeFiles/CppLogger.dir/build.make libs/CppLogger/CMakeFiles/CppLogger.dir/depend
 	$(MAKE) -f libs/CppLogger/CMakeFiles/CppLogger.dir/build.make libs/CppLogger/CMakeFiles/CppLogger.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=6,7 "Built target CppLogger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=15,16 "Built target CppLogger"
 .PHONY : libs/CppLogger/CMakeFiles/CppLogger.dir/all
 
 # Build rule for subdir invocation for target.

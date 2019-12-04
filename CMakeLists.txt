@@ -7,12 +7,14 @@ set(CCACHE_SLOPPINESS pch_defines,time_macros)
 include(cotire)
 
 include_directories(libs)
-
+include_directories(/usr/local/include)
 add_subdirectory(libs/CppLogger)
 
 add_library(42ngine SHARED
         src/Window.cpp
-        src/Window.h)
+        src/Window.h
+        src/VertexArray.cpp
+        src/VertexArray.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
@@ -21,10 +23,12 @@ set( GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE )
 find_path(GLEW_INCLUDE_DIR GL/glew.h)
 find_package(GLEW 2.1.0 REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
-find_library(CppLogger REQUIRED)
+find_package(CppLogger REQUIRED)
+
+include_directories(${CPPLOGGER_INCLUDE_DIR})
 
 target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR})
-target_link_libraries(42ngine CppLogger glfw GLEW::GLEW ${OPENGL_gl_LIBRARY} ${OpenCV_LIBS})
+target_link_libraries(42ngine glfw GLEW::GLEW ${OPENGL_gl_LIBRARY} ${OpenCV_LIBS} ${CPPLOGGER_LIBRARY})
 
 install(TARGETS 42ngine DESTINATION lib)
 install(FILES 42ngine.h DESTINATION include)

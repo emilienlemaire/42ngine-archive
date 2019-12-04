@@ -1,3 +1,0 @@
-[submodule "libs/CppLogger"]
-	path = libs/CppLogger
-	url = https://github.com/emilienlemaire/CppLogger.git

@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Pl
 
 CXX_DEFINES = -DCppLogger_EXPORTS
 
-CXX_INCLUDES = -I/Volumes/LaCie/CLionProjects/42ngine/libs 
+CXX_INCLUDES = -I/Volumes/LaCie/CLionProjects/42ngine/libs -I/usr/local/include 
 

@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -68,17 +80,27 @@ install/local/fast: preinstall/fast
 	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -92,17 +114,6 @@ install/fast: preinstall/fast
 	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -112,17 +123,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -157,30 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named 42ngine_unity
+# Target rules for targets named all_pch
 
 # Build rule for target.
-42ngine_unity: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 42ngine_unity
-.PHONY : 42ngine_unity
+all_pch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 all_pch
+.PHONY : all_pch
 
 # fast build rule for target.
-42ngine_unity/fast:
-	$(MAKE) -f CMakeFiles/42ngine_unity.dir/build.make CMakeFiles/42ngine_unity.dir/build
-.PHONY : 42ngine_unity/fast
-
-#=============================================================================
-# Target rules for targets named clean_cotire
-
-# Build rule for target.
-clean_cotire: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clean_cotire
-.PHONY : clean_cotire
-
-# fast build rule for target.
-clean_cotire/fast:
-	$(MAKE) -f CMakeFiles/clean_cotire.dir/build.make CMakeFiles/clean_cotire.dir/build
-.PHONY : clean_cotire/fast
+all_pch/fast:
+	$(MAKE) -f CMakeFiles/all_pch.dir/build.make CMakeFiles/all_pch.dir/build
+.PHONY : all_pch/fast
 
 #=============================================================================
 # Target rules for targets named all_unity
@@ -194,6 +181,45 @@ all_unity: cmake_check_build_system
 all_unity/fast:
 	$(MAKE) -f CMakeFiles/all_unity.dir/build.make CMakeFiles/all_unity.dir/build
 .PHONY : all_unity/fast
+
+#=============================================================================
+# Target rules for targets named 42ngine_unity
+
+# Build rule for target.
+42ngine_unity: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 42ngine_unity
+.PHONY : 42ngine_unity
+
+# fast build rule for target.
+42ngine_unity/fast:
+	$(MAKE) -f CMakeFiles/42ngine_unity.dir/build.make CMakeFiles/42ngine_unity.dir/build
+.PHONY : 42ngine_unity/fast
+
+#=============================================================================
+# Target rules for targets named 42ngine_pch
+
+# Build rule for target.
+42ngine_pch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 42ngine_pch
+.PHONY : 42ngine_pch
+
+# fast build rule for target.
+42ngine_pch/fast:
+	$(MAKE) -f CMakeFiles/42ngine_pch.dir/build.make CMakeFiles/42ngine_pch.dir/build
+.PHONY : 42ngine_pch/fast
+
+#=============================================================================
+# Target rules for targets named clean_cotire
+
+# Build rule for target.
+clean_cotire: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clean_cotire
+.PHONY : clean_cotire
+
+# fast build rule for target.
+clean_cotire/fast:
+	$(MAKE) -f CMakeFiles/clean_cotire.dir/build.make CMakeFiles/clean_cotire.dir/build
+.PHONY : clean_cotire/fast
 
 #=============================================================================
 # Target rules for targets named 42ngine
@@ -248,6 +274,33 @@ cotire/42ngine_CXX_unity.cxx.s:
 	$(MAKE) -f CMakeFiles/42ngine_unity.dir/build.make CMakeFiles/42ngine_unity.dir/cotire/42ngine_CXX_unity.cxx.s
 .PHONY : cotire/42ngine_CXX_unity.cxx.s
 
+src/VertexArray.o: src/VertexArray.cpp.o
+
+.PHONY : src/VertexArray.o
+
+# target to build an object file
+src/VertexArray.cpp.o:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexArray.cpp.o
+.PHONY : src/VertexArray.cpp.o
+
+src/VertexArray.i: src/VertexArray.cpp.i
+
+.PHONY : src/VertexArray.i
+
+# target to preprocess a source file
+src/VertexArray.cpp.i:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexArray.cpp.i
+.PHONY : src/VertexArray.cpp.i
+
+src/VertexArray.s: src/VertexArray.cpp.s
+
+.PHONY : src/VertexArray.s
+
+# target to generate assembly for a file
+src/VertexArray.cpp.s:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexArray.cpp.s
+.PHONY : src/VertexArray.cpp.s
+
 src/Window.o: src/Window.cpp.o
 
 .PHONY : src/Window.o
@@ -281,20 +334,25 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
 	@echo "... install/strip"
-	@echo "... install"
+	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
-	@echo "... 42ngine_unity"
 	@echo "... edit_cache"
-	@echo "... clean_cotire"
+	@echo "... install"
+	@echo "... all_pch"
 	@echo "... all_unity"
+	@echo "... 42ngine_unity"
+	@echo "... 42ngine_pch"
+	@echo "... list_install_components"
+	@echo "... clean_cotire"
 	@echo "... 42ngine"
 	@echo "... CppLogger"
 	@echo "... cotire/42ngine_CXX_unity.o"
 	@echo "... cotire/42ngine_CXX_unity.i"
 	@echo "... cotire/42ngine_CXX_unity.s"
+	@echo "... src/VertexArray.o"
+	@echo "... src/VertexArray.i"
+	@echo "... src/VertexArray.s"
 	@echo "... src/Window.o"
 	@echo "... src/Window.i"
 	@echo "... src/Window.s"
