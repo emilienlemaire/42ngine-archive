@@ -59,3 +59,20 @@ void Window::show() {
 Window::~Window() {
     glfwDestroyWindow(m_Window);
 }
+
+void Window::setClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const {
+    glClearColor(r, g, b, a);
+}
+
+void Window::enable(GLenum cap) const {
+    glEnable(cap);
+}
+
+void Window::setDepthFunc(GLenum func, GLfloat zNear, GLfloat zFar) const{
+    glDepthFunc(func);
+    glDepthRange(zNear, zFar);
+}
+
+void Window::setInputMode(int mode, int value) const {
+    glfwSetInputMode(m_Window, mode, value);
+}
