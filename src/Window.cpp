@@ -51,7 +51,7 @@ void Window::show() {
 
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
-    } while(!glfwWindowShouldClose(m_Window) && m_EscToQuit ? glfwGetKey(m_Window, GLFW_KEY_ESCAPE) != GLFW_PRESS : true);
+    } while(!glfwWindowShouldClose(m_Window) && m_EscToQuit ? glfwGetKey(m_Window, GLFW_KEY_ESCAPE) != GLFW_PRESS : false);
 
     Log::Info("Window closed");
 }
