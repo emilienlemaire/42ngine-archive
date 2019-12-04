@@ -41,6 +41,9 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lib42ngine.dylib" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lib42ngine.dylib")
+    execute_process(COMMAND /usr/bin/install_name_tool
+      -delete_rpath "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lib42ngine.dylib")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip" -x "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/lib42ngine.dylib")
     endif()

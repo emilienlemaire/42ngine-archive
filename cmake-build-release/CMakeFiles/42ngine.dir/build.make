@@ -79,7 +79,7 @@ CMakeFiles/42ngine.dir/src/Window.cpp.s: cmake_force
 
 lib42ngine.dylib: CMakeFiles/42ngine.dir/src/Window.cpp.o
 lib42ngine.dylib: CMakeFiles/42ngine.dir/build.make
-lib42ngine.dylib: libs/CppLogger/libCppLogger.a
+lib42ngine.dylib: libs/CppLogger/libCppLogger.dylib
 lib42ngine.dylib: /usr/local/lib/libglfw.3.3.dylib
 lib42ngine.dylib: /usr/local/lib/libGLEW.dylib
 lib42ngine.dylib: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
