@@ -51,7 +51,7 @@ void Window::show() {
 
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
-    } while(!glfwWindowShouldClose(m_Window));
+    } while(!glfwWindowShouldClose(m_Window) && m_EscToQuit ? glfwGetKey(m_Window, GLFW_KEY_ESCAPE) != GLFW_PRESS : true);
 
     Log::Info("Window closed");
 }
@@ -75,4 +75,8 @@ void Window::setDepthFunc(GLenum func, GLfloat zNear, GLfloat zFar) const{
 
 void Window::setInputMode(int mode, int value) const {
     glfwSetInputMode(m_Window, mode, value);
+}
+
+void Window::setEscapeToQuit(bool value) {
+    m_EscToQuit  = value;
 }
