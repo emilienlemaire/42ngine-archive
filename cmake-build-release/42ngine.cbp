@@ -68,10 +68,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine_unity">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="2"/>
+				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -93,10 +93,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine_unity/fast">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="2"/>
+				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -148,10 +148,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="2"/>
+				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -173,10 +173,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine/fast">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="2"/>
+				<Option type="3"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>

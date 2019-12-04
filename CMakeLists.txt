@@ -10,7 +10,7 @@ include_directories(libs)
 
 add_subdirectory(libs/CppLogger)
 
-add_library(42ngine STATIC
+add_library(42ngine SHARED
         src/Window.cpp
         src/Window.h)
 

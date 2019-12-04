@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/42ngine.dir/src/Window.cpp.o"
-  "lib42ngine.a"
+  "lib42ngine.dylib"
   "lib42ngine.pdb"
 )
 
