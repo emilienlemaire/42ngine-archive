@@ -3,4 +3,6 @@
 #ifdef __cplusplus
 #include "/Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp"
 #include "/Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp"
+#include "/Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.cpp"
+#include "/Volumes/LaCie/CLionProjects/42ngine/src/Shader.cpp"
 #endif

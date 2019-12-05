@@ -11,7 +11,6 @@ set(CMAKE_CXX_COMPILER_ID "AppleClang")
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "GLFW_DLL"
-  "_42ngine_EXPORTS"
   )
 
 # The include file search paths:

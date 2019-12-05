@@ -1,7 +1,1 @@
-In file included from /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/cotire/42ngine_CXX_unity.cxx:4:
-In file included from /Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp:6:
-In file included from /Volumes/LaCie/CLionProjects/42ngine/src/Window.h:10:
-/usr/local/include/Log.h:7:10: fatal error: 'src/Log.h' file not found
-#include "src/Log.h"
-         ^~~~~~~~~~~
-1 error generated.
+

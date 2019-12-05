@@ -7,4 +7,6 @@
 #include "/usr/local/include/GLFW/glfw3.h"
 #include "/usr/local/include/Log.h"
 #include "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector"
+#include "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/fstream"
+#include "/usr/local/include/glm/glm.hpp"
 #endif

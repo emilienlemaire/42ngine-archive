@@ -45,7 +45,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.15.3/CMakeSystem.cmake"
   "../cmake/modules/FindCppLogger.cmake"
   "../cmake/modules/cotire.cmake"
-  "../libs/CppLogger/CMakeLists.txt"
   "/usr/local/lib/cmake/glfw3/glfw3Config.cmake"
   "/usr/local/lib/cmake/glfw3/glfw3ConfigVersion.cmake"
   "/usr/local/lib/cmake/glfw3/glfw3Targets-release.cmake"
@@ -61,7 +60,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "libs/CppLogger/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -72,5 +70,4 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/42ngine_pch.dir/DependInfo.cmake"
   "CMakeFiles/clean_cotire.dir/DependInfo.cmake"
   "CMakeFiles/42ngine.dir/DependInfo.cmake"
-  "libs/CppLogger/CMakeFiles/CppLogger.dir/DependInfo.cmake"
   )

@@ -107,27 +107,56 @@ CMakeFiles/42ngine.dir/src/VertexArray.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/42ngine.dir/src/VertexArray.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp -o CMakeFiles/42ngine.dir/src/VertexArray.cpp.s
 
+CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o: CMakeFiles/42ngine.dir/flags.make
+CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o: ../src/VertexBuffer.cpp
+CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o: cotire/42ngine_CXX_prefix.hxx.pch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o -c /Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.cpp
+
+CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.cpp > CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.i
+
+CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.cpp -o CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.s
+
+CMakeFiles/42ngine.dir/src/Shader.cpp.o: CMakeFiles/42ngine.dir/flags.make
+CMakeFiles/42ngine.dir/src/Shader.cpp.o: ../src/Shader.cpp
+CMakeFiles/42ngine.dir/src/Shader.cpp.o: cotire/42ngine_CXX_prefix.hxx.pch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/42ngine.dir/src/Shader.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/42ngine.dir/src/Shader.cpp.o -c /Volumes/LaCie/CLionProjects/42ngine/src/Shader.cpp
+
+CMakeFiles/42ngine.dir/src/Shader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/42ngine.dir/src/Shader.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/LaCie/CLionProjects/42ngine/src/Shader.cpp > CMakeFiles/42ngine.dir/src/Shader.cpp.i
+
+CMakeFiles/42ngine.dir/src/Shader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/42ngine.dir/src/Shader.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/LaCie/CLionProjects/42ngine/src/Shader.cpp -o CMakeFiles/42ngine.dir/src/Shader.cpp.s
+
 # Object files for target 42ngine
 42ngine_OBJECTS = \
 "CMakeFiles/42ngine.dir/src/Window.cpp.o" \
-"CMakeFiles/42ngine.dir/src/VertexArray.cpp.o"
+"CMakeFiles/42ngine.dir/src/VertexArray.cpp.o" \
+"CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o" \
+"CMakeFiles/42ngine.dir/src/Shader.cpp.o"
 
 # External object files for target 42ngine
 42ngine_EXTERNAL_OBJECTS =
 
-lib42ngine.dylib: CMakeFiles/42ngine.dir/src/Window.cpp.o
-lib42ngine.dylib: CMakeFiles/42ngine.dir/src/VertexArray.cpp.o
-lib42ngine.dylib: CMakeFiles/42ngine.dir/build.make
-lib42ngine.dylib: /usr/local/lib/libglfw.3.3.dylib
-lib42ngine.dylib: /usr/local/lib/libGLEW.dylib
-lib42ngine.dylib: /usr/local/lib/libCppLogger.a
-lib42ngine.dylib: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
-lib42ngine.dylib: CMakeFiles/42ngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library lib42ngine.dylib"
+lib42ngine.a: CMakeFiles/42ngine.dir/src/Window.cpp.o
+lib42ngine.a: CMakeFiles/42ngine.dir/src/VertexArray.cpp.o
+lib42ngine.a: CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o
+lib42ngine.a: CMakeFiles/42ngine.dir/src/Shader.cpp.o
+lib42ngine.a: CMakeFiles/42ngine.dir/build.make
+lib42ngine.a: CMakeFiles/42ngine.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library lib42ngine.a"
+	$(CMAKE_COMMAND) -P CMakeFiles/42ngine.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/42ngine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/42ngine.dir/build: lib42ngine.dylib
+CMakeFiles/42ngine.dir/build: lib42ngine.a
 
 .PHONY : CMakeFiles/42ngine.dir/build
 

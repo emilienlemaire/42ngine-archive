@@ -3,6 +3,7 @@
 //
 
 #include <sstream>
+#include <glm/gtx/transform.hpp>
 #include "Window.h"
 
 Window::Window(GLuint t_Width, GLuint t_Height, const char* t_Title)
@@ -44,11 +45,36 @@ Window::Window(GLuint t_Width, GLuint t_Height, const char* t_Title)
     Log::Info(sstr.str());
 }
 
-void Window::show() {
+void Window::show(const Shader& shader, const VertexArray& va) {
     Log::Info("Window opened");
     do{
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        shader.bind();
+
+
+        glm::mat4 projection = glm::perspective(45.f, 1000.f/700.f, -10.f, 10.f);
+        glm::mat4 m_View = glm::lookAt(
+                glm::vec3(0.0, .0, 1000.f),
+                glm::vec3(0.0, 0.0, .1),
+                glm::vec3(0, 1., .0)
+                );
+        glm::mat4 m_Model = glm::mat4(1.f);
+        glm::mat4 m_Translation = glm::translate(glm::vec3(-500.f, -350.f, .0f));
+        glm::mat4 m_MVP = projection * m_View * m_Model * m_Translation;
+
+        glm::mat4 u_Model = m_Model * m_Translation;
+
+        shader.addUniformMat4("u_MVP", m_MVP);
+        shader.addUniformMat4("u_Model", u_Model);
+        shader.addUniformMat4("u_FragModel", u_Model);
+        shader.addUniformMat4("u_View", m_View);
+        for (int i = 0; i < va.getMNumberOfVao(); ++i) {
+            va.bind(i);
+            while (glGetError());
+            glDrawArrays(GL_TRIANGLES, 0, va.getMDrawSize()[i] / 3);
+            Log::Error(std::to_string(glGetError()));
+        }
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
     } while(m_EscToQuit ?( !glfwWindowShouldClose(m_Window) && glfwGetKey(m_Window, GLFW_KEY_ESCAPE) != GLFW_PRESS) : !glfwWindowShouldClose(m_Window));

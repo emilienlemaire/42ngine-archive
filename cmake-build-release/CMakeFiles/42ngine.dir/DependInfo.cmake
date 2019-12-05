@@ -4,7 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Volumes/LaCie/CLionProjects/42ngine/src/Shader.cpp" "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles/42ngine.dir/src/Shader.cpp.o"
   "/Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp" "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles/42ngine.dir/src/VertexArray.cpp.o"
+  "/Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.cpp" "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o"
   "/Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp" "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/CMakeFiles/42ngine.dir/src/Window.cpp.o"
   "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/cotire/42ngine_CXX_prefix.hxx" "/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/cotire/42ngine_CXX_prefix.hxx.pch"
   )
@@ -13,7 +15,6 @@ set(CMAKE_CXX_COMPILER_ID "AppleClang")
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
   "GLFW_DLL"
-  "_42ngine_EXPORTS"
   )
 
 # The include file search paths:

@@ -234,19 +234,6 @@ clean_cotire/fast:
 	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/build
 .PHONY : 42ngine/fast
 
-#=============================================================================
-# Target rules for targets named CppLogger
-
-# Build rule for target.
-CppLogger: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CppLogger
-.PHONY : CppLogger
-
-# fast build rule for target.
-CppLogger/fast:
-	$(MAKE) -f libs/CppLogger/CMakeFiles/CppLogger.dir/build.make libs/CppLogger/CMakeFiles/CppLogger.dir/build
-.PHONY : CppLogger/fast
-
 cotire/42ngine_CXX_unity.o: cotire/42ngine_CXX_unity.cxx.o
 
 .PHONY : cotire/42ngine_CXX_unity.o
@@ -274,6 +261,33 @@ cotire/42ngine_CXX_unity.cxx.s:
 	$(MAKE) -f CMakeFiles/42ngine_unity.dir/build.make CMakeFiles/42ngine_unity.dir/cotire/42ngine_CXX_unity.cxx.s
 .PHONY : cotire/42ngine_CXX_unity.cxx.s
 
+src/Shader.o: src/Shader.cpp.o
+
+.PHONY : src/Shader.o
+
+# target to build an object file
+src/Shader.cpp.o:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/Shader.cpp.o
+.PHONY : src/Shader.cpp.o
+
+src/Shader.i: src/Shader.cpp.i
+
+.PHONY : src/Shader.i
+
+# target to preprocess a source file
+src/Shader.cpp.i:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/Shader.cpp.i
+.PHONY : src/Shader.cpp.i
+
+src/Shader.s: src/Shader.cpp.s
+
+.PHONY : src/Shader.s
+
+# target to generate assembly for a file
+src/Shader.cpp.s:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/Shader.cpp.s
+.PHONY : src/Shader.cpp.s
+
 src/VertexArray.o: src/VertexArray.cpp.o
 
 .PHONY : src/VertexArray.o
@@ -300,6 +314,33 @@ src/VertexArray.s: src/VertexArray.cpp.s
 src/VertexArray.cpp.s:
 	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexArray.cpp.s
 .PHONY : src/VertexArray.cpp.s
+
+src/VertexBuffer.o: src/VertexBuffer.cpp.o
+
+.PHONY : src/VertexBuffer.o
+
+# target to build an object file
+src/VertexBuffer.cpp.o:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.o
+.PHONY : src/VertexBuffer.cpp.o
+
+src/VertexBuffer.i: src/VertexBuffer.cpp.i
+
+.PHONY : src/VertexBuffer.i
+
+# target to preprocess a source file
+src/VertexBuffer.cpp.i:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.i
+.PHONY : src/VertexBuffer.cpp.i
+
+src/VertexBuffer.s: src/VertexBuffer.cpp.s
+
+.PHONY : src/VertexBuffer.s
+
+# target to generate assembly for a file
+src/VertexBuffer.cpp.s:
+	$(MAKE) -f CMakeFiles/42ngine.dir/build.make CMakeFiles/42ngine.dir/src/VertexBuffer.cpp.s
+.PHONY : src/VertexBuffer.cpp.s
 
 src/Window.o: src/Window.cpp.o
 
@@ -346,13 +387,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... clean_cotire"
 	@echo "... 42ngine"
-	@echo "... CppLogger"
 	@echo "... cotire/42ngine_CXX_unity.o"
 	@echo "... cotire/42ngine_CXX_unity.i"
 	@echo "... cotire/42ngine_CXX_unity.s"
+	@echo "... src/Shader.o"
+	@echo "... src/Shader.i"
+	@echo "... src/Shader.s"
 	@echo "... src/VertexArray.o"
 	@echo "... src/VertexArray.i"
 	@echo "... src/VertexArray.s"
+	@echo "... src/VertexBuffer.o"
+	@echo "... src/VertexBuffer.i"
+	@echo "... src/VertexBuffer.s"
 	@echo "... src/Window.o"
 	@echo "... src/Window.i"
 	@echo "... src/Window.s"

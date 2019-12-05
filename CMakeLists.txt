@@ -4,17 +4,16 @@ project(42ngine)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CCACHE_SLOPPINESS pch_defines,time_macros)
+set(HEADERS src/42ngine.h src/Window.h src/VertexArray.h src/VertexBuffer.h src/Shader.h)
 include(cotire)
 
 include_directories(libs)
 include_directories(/usr/local/include)
-add_subdirectory(libs/CppLogger)
 
-add_library(42ngine SHARED
+add_library(42ngine STATIC
         src/Window.cpp
-        src/Window.h
         src/VertexArray.cpp
-        src/VertexArray.h)
+        src/VertexBuffer.cpp src/Shader.cpp src/42ngine.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
@@ -31,5 +30,5 @@ target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR})
 target_link_libraries(42ngine glfw GLEW::GLEW ${OPENGL_gl_LIBRARY} ${OpenCV_LIBS} ${CPPLOGGER_LIBRARY})
 
 install(TARGETS 42ngine DESTINATION lib)
-install(FILES 42ngine.h DESTINATION include)
+install(FILES ${HEADERS} DESTINATION include/42ngine)
 cotire(42ngine)

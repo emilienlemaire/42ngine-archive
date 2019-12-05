@@ -7,6 +7,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <Log.h>
+#include "Shader.h"
+#include "VertexArray.h"
 
 class Window {
 private:
@@ -22,7 +24,7 @@ public:
     void setDepthFunc(GLenum func, GLfloat zNear, GLfloat zFar) const;
     void setInputMode(int mode, int value) const;
     void setEscapeToQuit(bool value);
-    void show();
+    void show(const Shader& shader, const VertexArray& va);
 
     virtual ~Window();
 };

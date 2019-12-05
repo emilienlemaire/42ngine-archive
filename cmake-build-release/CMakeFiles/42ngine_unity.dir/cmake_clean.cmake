@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/42ngine_unity.dir/cotire/42ngine_CXX_unity.cxx.o"
   "cotire/42ngine_CXX_unity.cxx"
-  "lib42ngine.dylib"
+  "lib42ngine.a"
   "lib42ngine.pdb"
 )
 

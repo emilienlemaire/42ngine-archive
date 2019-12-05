@@ -5,7 +5,7 @@
 		<Option title="42ngine"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\modules\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\glfw3\;CMake Files\libs\;CMake Files\libs\CppLogger\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\modules\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\glfw3\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
@@ -88,10 +88,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine_unity">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -113,10 +113,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine_unity/fast">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -168,10 +168,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -193,10 +193,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="42ngine/fast">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/lib42ngine.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DGLFW_DLL"/>
@@ -217,50 +217,6 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="CppLogger">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/libCppLogger.dylib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger"/>
-				<Option object_output="./"/>
-				<Option type="3"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Volumes/LaCie/CLionProjects/42ngine/libs"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 CppLogger"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="CppLogger/fast">
-				<Option output="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/libCppLogger.dylib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger"/>
-				<Option object_output="./"/>
-				<Option type="3"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Volumes/LaCie/CLionProjects/42ngine/libs"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 CppLogger/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/libs/CppLogger/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 		</Build>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/cmake-build-release/cotire/42ngine_CXX_prefix.cxx.rule">
 			<Option target="42ngine"/>
@@ -278,24 +234,32 @@
 			<Option target="42ngine_unity"/>
 			<Option target="42ngine"/>
 		</Unit>
-		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/libs/CppLogger/src/Log.cpp">
-			<Option target="CppLogger"/>
+		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/42ngine.h">
+			<Option target="42ngine_unity"/>
+			<Option target="42ngine"/>
 		</Unit>
-		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/libs/CppLogger/src/Log.h">
-			<Option target="CppLogger"/>
+		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/Shader.cpp">
+			<Option target="42ngine"/>
+		</Unit>
+		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/Shader.h">
+			<Option target="42ngine"/>
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.cpp">
 			<Option target="42ngine"/>
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/VertexArray.h">
-			<Option target="42ngine_unity"/>
+			<Option target="42ngine"/>
+		</Unit>
+		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.cpp">
+			<Option target="42ngine"/>
+		</Unit>
+		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/VertexBuffer.h">
 			<Option target="42ngine"/>
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/Window.cpp">
 			<Option target="42ngine"/>
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/src/Window.h">
-			<Option target="42ngine_unity"/>
 			<Option target="42ngine"/>
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/CMakeLists.txt">
@@ -318,9 +282,6 @@
 		</Unit>
 		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/../../../../usr/local/lib/cmake/glfw3/glfw3Targets.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\glfw3\"/>
-		</Unit>
-		<Unit filename="/Volumes/LaCie/CLionProjects/42ngine/libs/CppLogger/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\libs\CppLogger\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
