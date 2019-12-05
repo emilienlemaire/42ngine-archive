@@ -73,7 +73,9 @@ void Window::show(const Shader& shader, const VertexArray& va) {
             va.bind(i);
             while (glGetError());
             glDrawArrays(GL_TRIANGLES, 0, va.getMDrawSize()[i] / 3);
-            Log::Error(std::to_string(glGetError()));
+            GLenum error = glGetError();
+            if(error)
+                Log::Error(std::to_string(error));
         }
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
