@@ -12,8 +12,8 @@ private:
     GLuint m_NumberOfVAO;
     std::vector<GLuint> m_ArrayIDs;
     std::vector<GLuint> m_DrawSize;
-    long m_Offset = 0;
-    GLuint m_Location = 0;
+    std::vector<long> m_Offset;
+    std::vector<GLuint> m_Locations;
 public:
     explicit VertexArray(GLuint t_NumberOfVAO);
     ~VertexArray();
@@ -24,12 +24,12 @@ public:
     GLuint getMNumberOfVao() const;
 
     template<typename T>
-    void Push(int count, int size, int arrayID = 0, bool draw = false);
+    void push(int index, int count, int size, bool draw = false);
 
     const std::vector<GLuint> &getMDrawSize() const;
 
     template<>
-    void Push<GLfloat>(int count, int size, int arrayID, bool draw);
+    void push<GLfloat>(int index, int count, int size, bool draw);
 };
 
 

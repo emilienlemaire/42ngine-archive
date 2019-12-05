@@ -9,28 +9,35 @@ VertexArray::VertexArray(GLuint t_NumberOfVAO)
 {
     m_ArrayIDs.resize(m_NumberOfVAO);
     m_DrawSize.resize(m_NumberOfVAO);
-    glGenVertexArrays(m_NumberOfVAO, &m_ArrayIDs[0]);
+    m_Locations.resize(m_NumberOfVAO);
+    m_Offset.resize(m_NumberOfVAO);
+
+    for (unsigned int i = 0; i < m_NumberOfVAO; i++) {
+        m_Locations[i] = 0;
+        m_Offset[i] = 0;
+        glGenVertexArrays(1, &m_ArrayIDs[i]);
+    }
 }
 
 VertexArray::~VertexArray() {
-    glDeleteVertexArrays(m_NumberOfVAO, &m_ArrayIDs[0]);
+    for (unsigned int & m_ArrayID : m_ArrayIDs) {
+        glDeleteVertexArrays(1, &m_ArrayID);
+    }
 }
 
 template<>
-void VertexArray::Push<GLfloat>(int count, int size, int arrayID, bool draw) {
+void VertexArray::push<GLfloat>(int index, int count, int size, bool draw) {
     glVertexAttribPointer(
-            m_Location,
+            m_Locations[index],
             count,
             GL_FLOAT,
             GL_FALSE,
             0,
-            (void*)m_Offset
+            (void*)m_Offset[index]
             );
-    m_Location++;
-    m_Offset += size;
-    if (draw){
-        m_DrawSize[arrayID] += size / sizeof(GLfloat);
-    }
+    glEnableVertexAttribArray(m_Locations[index]);
+    m_Locations[index]++;
+    m_Offset[index] += size;
 }
 
 void VertexArray::bind(GLuint arrayNumber) const {
