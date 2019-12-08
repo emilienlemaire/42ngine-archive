@@ -11,9 +11,15 @@ include_directories(libs)
 include_directories(/usr/local/include)
 
 add_library(42ngine STATIC
+        src/42ngine.h
         src/Window.cpp
         src/VertexArray.cpp
-        src/VertexBuffer.cpp src/Shader.cpp src/42ngine.h)
+        src/VertexBuffer.cpp
+        src/Shader.cpp
+        src/Application.cpp
+        src/Application.h
+        src/IndexBuffer.cpp
+        src/IndexBuffer.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
