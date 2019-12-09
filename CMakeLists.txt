@@ -4,22 +4,24 @@ project(42ngine)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CCACHE_SLOPPINESS pch_defines,time_macros)
-set(HEADERS src/42ngine.h src/Window.h src/VertexArray.h src/VertexBuffer.h src/Shader.h)
+set(HEADERS 42ngine.h src/Window.h src/VertexArray.h src/VertexBuffer.h src/Shader.h)
 include(cotire)
 
-include_directories(libs)
-include_directories(/usr/local/include)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    include_directories(/usr/local/include)
+    add_compile_definitions(FT_PLATFORM_APPLE)
+else()
+    message(FATAL_ERROR "42ngine is only compatible with macOS as of today")
+endif()
 
-add_library(42ngine STATIC
-        src/42ngine.h
+add_library(42ngine SHARED
+        42ngine.h
         src/Window.cpp
         src/VertexArray.cpp
         src/VertexBuffer.cpp
         src/Shader.cpp
-        src/Application.cpp
-        src/Application.h
         src/IndexBuffer.cpp
-        src/IndexBuffer.h)
+        src/IndexBuffer.h src/Application.cpp src/Application.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
@@ -35,6 +37,8 @@ include_directories(${CPPLOGGER_INCLUDE_DIR})
 target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR})
 target_link_libraries(42ngine glfw GLEW::GLEW ${OPENGL_gl_LIBRARY} ${OpenCV_LIBS} ${CPPLOGGER_LIBRARY})
 
-install(TARGETS 42ngine DESTINATION lib)
-install(FILES ${HEADERS} DESTINATION include/42ngine)
+if(${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
+    install(TARGETS 42ngine DESTINATION lib)
+    install(FILES ${HEADERS} DESTINATION include/42ngine)
+endif()
 cotire(42ngine)

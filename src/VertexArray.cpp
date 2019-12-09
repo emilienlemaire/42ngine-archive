@@ -4,54 +4,55 @@
 
 #include "VertexArray.h"
 
-VertexArray::VertexArray(GLuint t_NumberOfVAO)
-    :m_NumberOfVAO(t_NumberOfVAO)
-{
-    m_ArrayIDs.resize(m_NumberOfVAO);
-    m_DrawSize.resize(m_NumberOfVAO);
-    m_Locations.resize(m_NumberOfVAO);
-    m_Offset.resize(m_NumberOfVAO);
+namespace ftn {
+    VertexArray::VertexArray(GLuint t_NumberOfVAO)
+            : m_NumberOfVAO(t_NumberOfVAO) {
+        m_ArrayIDs.resize(m_NumberOfVAO);
+        m_DrawSize.resize(m_NumberOfVAO);
+        m_Locations.resize(m_NumberOfVAO);
+        m_Offset.resize(m_NumberOfVAO);
 
-    for (unsigned int i = 0; i < m_NumberOfVAO; i++) {
-        m_Locations[i] = 0;
-        m_Offset[i] = 0;
-        glGenVertexArrays(1, &m_ArrayIDs[i]);
+        for (unsigned int i = 0; i < m_NumberOfVAO; i++) {
+            m_Locations[i] = 0;
+            m_Offset[i] = 0;
+            glGenVertexArrays(1, &m_ArrayIDs[i]);
+        }
     }
-}
 
-VertexArray::~VertexArray() {
-    for (unsigned int & m_ArrayID : m_ArrayIDs) {
-        glDeleteVertexArrays(1, &m_ArrayID);
+    VertexArray::~VertexArray() {
+        for (unsigned int &m_ArrayID : m_ArrayIDs) {
+            glDeleteVertexArrays(1, &m_ArrayID);
+        }
     }
-}
 
-template<>
-void VertexArray::push<GLfloat>(int index, int count, int size, bool draw) {
-    glVertexAttribPointer(
-            m_Locations[index],
-            count,
-            GL_FLOAT,
-            GL_FALSE,
-            0,
-            (void*)m_Offset[index]
-            );
-    glEnableVertexAttribArray(m_Locations[index]);
-    m_Locations[index]++;
-    m_Offset[index] += size;
-}
+    template<>
+    void VertexArray::push<GLfloat>(int t_Index, int t_Count, int t_Size) {
+        glVertexAttribPointer(
+                m_Locations[t_Index],
+                t_Count,
+                GL_FLOAT,
+                GL_FALSE,
+                0,
+                (void *) m_Offset[t_Index]
+        );
+        glEnableVertexAttribArray(m_Locations[t_Index]);
+        m_Locations[t_Index]++;
+        m_Offset[t_Index] += t_Size;
+    }
 
-void VertexArray::bind(GLuint arrayNumber) const {
-    glBindVertexArray(m_ArrayIDs[arrayNumber]);
-}
+    void VertexArray::bind(GLuint t_ArrayIndex) const {
+        glBindVertexArray(m_ArrayIDs[t_ArrayIndex]);
+    }
 
-void VertexArray::unbind() const {
-    glBindVertexArray(0);
-}
+    void VertexArray::unbind() const {
+        glBindVertexArray(0);
+    }
 
-GLuint VertexArray::getMNumberOfVao() const {
-    return m_NumberOfVAO;
-}
+    GLuint VertexArray::getMNumberOfVao() const {
+        return m_NumberOfVAO;
+    }
 
-const std::vector<GLuint> &VertexArray::getMDrawSize() const {
-    return m_DrawSize;
+    const std::vector<GLuint> &VertexArray::getMDrawSize() const {
+        return m_DrawSize;
+    }
 }

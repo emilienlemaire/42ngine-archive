@@ -4,19 +4,22 @@
 
 #pragma once
 
-class VertexBuffer {
-private:
-    GLuint m_NumberVertexBuffers;
-    std::vector<GLuint> m_VertexBuffersID;
-public:
-    explicit VertexBuffer(GLuint t_NumberVertexBuffers);
-    ~VertexBuffer();
+namespace ftn {
+    class VertexBuffer {
+    private:
+        GLuint m_NumberVertexBuffers;
+        std::vector<GLuint> m_VertexBuffersID;
+    public:
+        explicit VertexBuffer(GLuint t_NumberVertexBuffers);
 
-    void bind(GLuint vertexBufferNumber) const;
-    void unbind() const;
-    static void setData(GLuint size);
-    void addSubData(const std::vector<GLfloat>& data, long offset = 0) const;
-};
+        ~VertexBuffer();
 
+        void bind(GLuint t_BufferIndex) const;
 
+        void unbind() const;
 
+        static void setData(GLuint t_Size);
+
+        void addSubData(const std::vector<GLfloat> &t_Data, long t_Offset = 0) const;
+    };
+}

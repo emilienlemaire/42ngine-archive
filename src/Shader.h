@@ -11,21 +11,25 @@
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+namespace ftn {
+    class Shader {
+    private:
+        GLuint m_ProgramID;
+    public:
+        Shader(const std::string &t_VertexShaderPath, const std::string &t_FragmentShaderPath);
 
-class Shader {
-private:
-    GLuint m_ProgramID;
-public:
-    Shader(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
-    ~Shader();
-    void bind() const;
-    void unbind() const;
-    void addUniform4f(const GLchar *name, glm::vec4 vec) const;
-    void addUniform3f(const GLchar* name, glm::vec3 vec) const;
-    void addUniformMat4(const GLchar *name, glm::mat4 mat) const;
-    inline GLuint getProgramId() const { return m_ProgramID; };
-};
+        ~Shader();
 
+        void bind() const;
 
+        void unbind() const;
 
+        void addUniform4f(const GLchar *t_Name, glm::vec4 t_Vec) const;
 
+        void addUniform3f(const GLchar *t_Name, glm::vec3 t_Vec) const;
+
+        void addUniformMat4(const GLchar *t_Name, glm::mat4 t_Mat) const;
+
+        inline GLuint getProgramId() const { return m_ProgramID; };
+    };
+}

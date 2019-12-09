@@ -10,24 +10,27 @@
 #include "Shader.h"
 #include "VertexArray.h"
 
-class Window {
-private:
-    GLFWwindow* m_Window = nullptr;
-    GLuint m_Width;
-    GLuint m_Height;
-    const char* m_Title;
-    bool m_EscToQuit = false;
-public:
-    Window(GLuint t_Width, GLuint t_Height, const char* t_Title);
-    void setClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const;
-    void enable(GLenum cap) const;
-    void setDepthFunc(GLenum func, GLfloat zNear, GLfloat zFar) const;
-    void setInputMode(int mode, int value) const;
-    void setEscapeToQuit(bool value);
-    void show(const Shader& shader, const VertexArray& va);
+namespace ftn {
+    class Window {
+    private:
+        GLFWwindow *m_Window = nullptr;
+        GLuint m_Width;
+        GLuint m_Height;
+        const char *m_Title;
+        bool m_EscToQuit = false;
+    public:
+        Window(GLuint t_Width, GLuint t_Height, const char *t_Title);
 
-    virtual ~Window();
-};
+        void setInputMode(int t_Mode, int t_Value) const;
 
+        void setEscapeToQuit(bool t_Value);
 
+        void update() const;
 
+        bool shouldClose() const;
+
+        GLFWwindow* getWindow() const { return m_Window; }
+
+        virtual ~Window();
+    };
+}

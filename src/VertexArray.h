@@ -6,31 +6,31 @@
 
 
 #include <vector>
+namespace ftn {
+    class VertexArray {
+    private:
+        GLuint m_NumberOfVAO;
+        std::vector<GLuint> m_ArrayIDs;
+        std::vector<GLuint> m_DrawSize;
+        std::vector<long> m_Offset;
+        std::vector<GLuint> m_Locations;
+    public:
+        explicit VertexArray(GLuint t_NumberOfVAO);
 
-class VertexArray {
-private:
-    GLuint m_NumberOfVAO;
-    std::vector<GLuint> m_ArrayIDs;
-    std::vector<GLuint> m_DrawSize;
-    std::vector<long> m_Offset;
-    std::vector<GLuint> m_Locations;
-public:
-    explicit VertexArray(GLuint t_NumberOfVAO);
-    ~VertexArray();
+        ~VertexArray();
 
-    void bind(GLuint arrayNumber) const;
-    void unbind() const;
+        void bind(GLuint t_ArrayIndex) const;
 
-    GLuint getMNumberOfVao() const;
+        void unbind() const;
 
-    template<typename T>
-    void push(int index, int count, int size, bool draw = false);
+        GLuint getMNumberOfVao() const;
 
-    const std::vector<GLuint> &getMDrawSize() const;
+        template<typename T>
+        void push(int t_Index, int t_Count, int t_Size);
 
-    template<>
-    void push<GLfloat>(int index, int count, int size, bool draw);
-};
+        const std::vector<GLuint> &getMDrawSize() const;
 
-
-
+        template<>
+        void push<GLfloat>(int t_Index, int t_Count, int t_Size);
+    };
+}
