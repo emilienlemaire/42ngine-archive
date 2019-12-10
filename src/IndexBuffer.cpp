@@ -6,7 +6,7 @@
 namespace ftn {
     IndexBuffer::IndexBuffer(GLuint t_NumberOfBuffers)
             : m_NumberOfBuffers(t_NumberOfBuffers) {
-        m_IndexBufferIDs.reserve(t_NumberOfBuffers);
+        m_IndexBufferIDs.resize(t_NumberOfBuffers);
         for (GLuint i = 0; i < t_NumberOfBuffers; ++i) {
             glGenBuffers(1, &m_IndexBufferIDs[i]);
         }
@@ -19,23 +19,23 @@ namespace ftn {
     }
 
     void IndexBuffer::indexData(std::vector<GLfloat> &t_InData,
-                                std::vector<GLubyte> &t_OutIndices,
+                                std::vector<GLuint> &t_OutIndices,
                                 std::vector<GLfloat> &t_OutData) const {
         t_OutIndices.clear();
         std::vector<Vertex> inData;
         std::vector<Vertex> outData;
         dataToVertex(t_InData, inData);
-        std::map<Vertex, GLubyte> vertices;
+        std::map<Vertex, GLuint> vertices;
 
         for (unsigned long i = 0; i < inData.size(); ++i) {
-            GLubyte index;
+            GLuint index;
             Vertex vertex = inData[i];
             bool found = findVertex(vertices, vertex, index);
             if (found) {
                 t_OutIndices.push_back(index);
             } else {
                 outData.push_back(vertex);
-                GLubyte newIndex = (GLubyte) outData.size() - 1;
+                GLuint newIndex = (GLuint) outData.size() - 1;
                 t_OutIndices.push_back(newIndex);
                 vertices[vertex] = newIndex;
             }
@@ -53,11 +53,11 @@ namespace ftn {
         );
     }
 
-    void IndexBuffer::addSubData(const std::vector<GLubyte> &t_Data, long t_Offset) const {
+    void IndexBuffer::addSubData(const std::vector<GLuint> &t_Data, long t_Offset) const {
         glBufferSubData(
                 GL_ELEMENT_ARRAY_BUFFER,
                 t_Offset,
-                t_Data.size() * sizeof(GLubyte),
+                t_Data.size() * sizeof(GLuint),
                 &t_Data[0]
         );
     }
@@ -70,25 +70,34 @@ namespace ftn {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-    void IndexBuffer::dataToVertex(std::vector<GLfloat> &t_Data, std::vector<Vertex> &t_Result) const {
-        for (unsigned long i = 0; i < t_Data.size(); i += 3) {
-            t_Result.push_back(Vertex{
+    void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData) const {
+
+        t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
+        for (unsigned long i = 0; i < t_InData.size(); i += 3) {
+            t_OutData.push_back(Vertex{
                     glm::vec3(
-                            t_Data[i + 0],
-                            t_Data[i + 1],
-                            t_Data[i + 2]
+                            t_InData[i + 0],
+                            t_InData[i + 1],
+                            t_InData[i + 2]
                     )
             });
         }
     }
 
-    bool IndexBuffer::findVertex(std::map<Vertex, GLubyte> &t_Map, Vertex &t_Vertex, GLubyte &t_Index) const {
+    bool IndexBuffer::findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index) const {
         auto it = t_Map.find(t_Vertex);
         if (it == t_Map.end()) {
             return false;
         } else {
-            t_Index = it->second;
-            return true;
+            Vertex vert = it->first;
+            if(vert.position.x == t_Vertex.position.x
+            && vert.position.y == t_Vertex.position.y
+            && vert.position.z == t_Vertex.position.z)
+            {
+                t_Index = it->second;
+                return true;
+            }
+            return false;
         }
     }
 
@@ -100,5 +109,68 @@ namespace ftn {
             t_OutData.push_back(vertex.position.y);
             t_OutData.push_back(vertex.position.z);
         }
+    }
+
+    void IndexBuffer::indexData(std::vector<GLfloat> &t_InData, std::vector<GLfloat> &t_InNormals,
+                                std::vector<GLuint> &t_OutIndices, std::vector<GLfloat> &t_OutData,
+                                std::vector<GLfloat> &t_OutNormals) const {
+        t_OutIndices.clear();
+        std::vector<Vertex> inData;
+        std::vector<Vertex> outData;
+        dataToVertex(t_InData, t_InNormals, inData);
+        std::map<Vertex, GLuint> vertices;
+
+        for (unsigned long i = 0; i < inData.size(); ++i) {
+            GLuint index;
+            Vertex vertex = inData[i];
+            bool found = findVertex(vertices, vertex, index);
+            if (found) {
+                t_OutIndices.push_back(index);
+            } else {
+                outData.push_back(vertex);
+                GLuint newIndex = (GLuint) outData.size() - 1;
+                t_OutIndices.push_back(newIndex);
+                vertices[vertex] = newIndex;
+            }
+        }
+
+        vertexToData(outData, t_OutData, t_OutNormals);
+
+    }
+
+    void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals,
+                                   std::vector<Vertex> &t_OutData) const {t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
+        for (unsigned long i = 0; i < t_InData.size(); i += 3) {
+            t_OutData.push_back(Vertex{
+                    glm::vec3(
+                            t_InData[i + 0],
+                            t_InData[i + 1],
+                            t_InData[i + 2]
+                    ),
+                    glm::vec3(
+                            t_Normals[i + 0],
+                            t_Normals[i + 1],
+                            t_Normals[i + 2]
+                    )
+            });
+        }
+
+    }
+
+    void IndexBuffer::vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData,
+                                   std::vector<GLfloat> &t_OutNormals) const {
+        t_OutData.clear();
+        t_OutData.reserve(t_Vertices.size() * 3);
+        t_OutNormals.clear();
+        t_OutNormals.reserve(t_Vertices.size() * 3);
+        for (auto vertex : t_Vertices) {
+            t_OutData.push_back(vertex.position.x);
+            t_OutData.push_back(vertex.position.y);
+            t_OutData.push_back(vertex.position.z);
+            t_OutNormals.push_back(vertex.normals.x);
+            t_OutNormals.push_back(vertex.normals.y);
+            t_OutNormals.push_back(vertex.normals.z);
+        }
+
     }
 }

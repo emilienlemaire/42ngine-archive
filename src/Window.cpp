@@ -1,6 +1,9 @@
 //
 // Created by Emilien Lemaire on 04/12/2019.
 //
+#include <imgui.h>
+#include <examples/imgui_impl_glfw.h>
+#include <examples/imgui_impl_opengl3.h>
 #include "Window.h"
 
 namespace ftn {
@@ -16,6 +19,17 @@ namespace ftn {
         Log::Debug("Window created");
 
         glfwMakeContextCurrent(m_Window);
+
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+
+        ImGuiIO& io = ImGui::GetIO();
+        (void)io;
+
+        ImGui::StyleColorsDark();
+
+        ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+        ImGui_ImplOpenGL3_Init("#version 330 core");
     }
 
     Window::~Window() {
@@ -30,7 +44,21 @@ namespace ftn {
         m_EscToQuit = t_Value;
     }
 
-    void Window::update() const{
+    void Window::update(GLfloat* angle) const{
+
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        {
+            ImGui::Begin("Test");
+            ImGui::SliderFloat("Angle", angle, 0.f, 360.f);
+            ImGui::End();
+        }
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
     }
@@ -42,5 +70,13 @@ namespace ftn {
         }
 
         return glfwWindowShouldClose(m_Window) || esc;
+    }
+
+    void Window::setVSync(bool t_Enable) {
+        m_VSync = t_Enable;
+        if (m_VSync)
+            glfwSwapInterval(1);
+        else
+            glfwSwapInterval(0);
     }
 }

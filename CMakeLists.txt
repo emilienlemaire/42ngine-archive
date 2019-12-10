@@ -14,6 +14,8 @@ else()
     message(FATAL_ERROR "42ngine is only compatible with macOS as of today")
 endif()
 
+add_subdirectory(libs/imgui)
+
 add_library(42ngine SHARED
         42ngine.h
         src/Window.cpp
@@ -21,7 +23,13 @@ add_library(42ngine SHARED
         src/VertexBuffer.cpp
         src/Shader.cpp
         src/IndexBuffer.cpp
-        src/IndexBuffer.h src/Application.cpp src/Application.h)
+        src/IndexBuffer.h
+        src/Application.cpp
+        src/Application.h
+        src/Renderer.cpp
+        src/Renderer.h
+        src/Element.cpp
+        src/Element.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
@@ -32,10 +40,8 @@ find_package(GLEW 2.1.0 REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(CppLogger REQUIRED)
 
-include_directories(${CPPLOGGER_INCLUDE_DIR})
-
-target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR})
-target_link_libraries(42ngine glfw GLEW::GLEW ${OPENGL_gl_LIBRARY} ${OpenCV_LIBS} ${CPPLOGGER_LIBRARY})
+target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR} ${CPPLOGGER_INCLUDE_DIR})
+target_link_libraries(42ngine imgui glfw GLEW::GLEW ${OPENGL_gl_LIBRARY} ${OpenCV_LIBS} ${CPPLOGGER_LIBRARY})
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
     install(TARGETS 42ngine DESTINATION lib)

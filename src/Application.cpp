@@ -37,9 +37,9 @@ namespace ftn {
         glEnable(t_Cap);
     }
 
-    void Application::setDepthFunc(GLenum t_Func, GLfloat t_ZNear, GLfloat t_ZFAR) const {
+    void Application::setDepthFunc(GLenum t_Func, GLfloat t_ZNear, GLfloat t_ZFar) const {
         glDepthFunc(t_Func);
-        glDepthRange(t_ZNear, t_ZFAR);
+        glDepthRange(t_ZNear, t_ZFar);
     }
 
     void Application::setWindow(Window *t_Window) {

@@ -5,13 +5,14 @@
 #pragma once
 
 #include <map>
+#include <GL/glew.h>
 
 namespace ftn {
     struct Vertex {
         glm::vec3 position;
-
+        glm::vec3 normals = glm::vec3(0.f);
         bool operator<(const Vertex vertex) const {
-            return glm::length(this->position) < glm::length(vertex.position);
+            return memcmp((void*)this, (void*)&vertex, sizeof(Vertex)) > 0;
         }
     };
 
@@ -25,23 +26,33 @@ namespace ftn {
         ~IndexBuffer();
 
         void indexData(std::vector<GLfloat> &t_InData,
-                       std::vector<GLubyte> &t_OutIndices,
+                       std::vector<GLuint> &t_OutIndices,
                        std::vector<GLfloat> &t_OutData) const;
+
+        void indexData(std::vector<GLfloat> &t_InData,
+                       std::vector<GLfloat> &t_InNormals,
+                       std::vector<GLuint> &t_OutIndices,
+                       std::vector<GLfloat> &t_OutData,
+                       std::vector<GLfloat> &t_OutNormals) const;
 
         void setData(GLuint t_Size);
 
-        void addSubData(const std::vector<GLubyte> &t_Data, long t_Offset = 0) const;
+        void addSubData(const std::vector<GLuint> &t_Data, long t_Offset = 0) const;
 
         void bind(GLuint t_BufferNumber) const;
 
         void unbind() const;
 
     private:
-        void dataToVertex(std::vector<GLfloat> &t_Data, std::vector<Vertex> &t_Result) const;
+        void dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData) const;
+
+        void dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals, std::vector<Vertex> &t_OutData) const;
 
         void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData) const;
 
-        bool findVertex(std::map<Vertex, GLubyte> &t_Map, Vertex &t_Vertex, GLubyte &t_Index) const;
+        void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData, std::vector<GLfloat> &t_OutNormals) const;
+
+        bool findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index) const;
     };
 }
 

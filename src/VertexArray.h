@@ -5,7 +5,9 @@
 #pragma once
 
 
+#include <GL/glew.h>
 #include <vector>
+
 namespace ftn {
     class VertexArray {
     private:

@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <GL/glew.h>
+
 namespace ftn {
     class VertexBuffer {
     private:
