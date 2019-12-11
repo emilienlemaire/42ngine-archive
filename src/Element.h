@@ -18,27 +18,27 @@ namespace ftn {
         GLuint m_VerticesSize;
         GLuint m_NormalsSize = 0;
 
-        VertexArray* m_VertexArray;
-        IndexBuffer* m_IndexBuffer;
-        VertexBuffer* m_VertexBuffer;
+        std::shared_ptr<VertexArray> m_VertexArray;
+        std::shared_ptr<IndexBuffer> m_IndexBuffer;
+        std::shared_ptr<VertexBuffer> m_VertexBuffer;
         glm::vec3 m_Color = glm::vec3(1.0, 1.0, 1.0);
     public:
         Element(std::vector<GLfloat>& t_Data,
                 GLuint t_IndexBufferID,
                 GLuint t_VertexBufferID,
                 GLuint t_VertexArrayID,
-                IndexBuffer* t_IndexBuffer,
-                VertexBuffer* t_VertexBuffer,
-                VertexArray* t_VertexArray);
+                std::shared_ptr<IndexBuffer> t_IndexBuffer,
+                std::shared_ptr<VertexBuffer> t_VertexBuffer,
+                std::shared_ptr<VertexArray> t_VertexArray);
 
         Element(std::vector<GLfloat>& t_Data,
                 std::vector<GLfloat>& t_Normals,
                 GLuint t_IndexBufferID,
                 GLuint t_VertexBufferID,
                 GLuint t_VertexArrayID,
-                IndexBuffer* t_IndexBuffer,
-                VertexBuffer* t_VertexBuffer,
-                VertexArray* t_VertexArray);
+                std::shared_ptr<IndexBuffer> t_IndexBuffer,
+                std::shared_ptr<VertexBuffer> t_VertexBuffer,
+                std::shared_ptr<VertexArray> t_VertexArray);
 
         void render() const;
 

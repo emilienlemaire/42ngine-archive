@@ -16,7 +16,7 @@
 namespace ftn {
     class Application {
     private:
-        Window* m_Window = nullptr;
+        std::shared_ptr<Window> m_Window;
     public:
         Application();
         ~Application();
@@ -41,6 +41,6 @@ namespace ftn {
          * Set the window pointer and initialize glew
          * @param t_Window
          */
-        void setWindow(Window* t_Window);
+        void setWindow(const std::shared_ptr<Window> &t_Window);
     };
 }

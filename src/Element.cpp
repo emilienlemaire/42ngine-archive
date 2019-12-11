@@ -7,7 +7,7 @@
 namespace ftn {
 
     Element::Element(std::vector<GLfloat> &t_Data, GLuint t_IndexBufferID, GLuint t_VertexBufferID, GLuint t_VertexArrayID,
-                     IndexBuffer* t_IndexBuffer, VertexBuffer* t_VertexBuffer, VertexArray* t_VertexArray)
+                     std::shared_ptr<IndexBuffer> t_IndexBuffer, std::shared_ptr<VertexBuffer> t_VertexBuffer, std::shared_ptr<VertexArray> t_VertexArray)
                      :m_IndexBufferID(t_IndexBufferID),
                      m_VertexBufferID(t_VertexBufferID),
                      m_VertexArrayID(t_VertexArrayID),
@@ -34,7 +34,7 @@ namespace ftn {
     }
 
     Element::Element(std::vector<GLfloat> &t_Data, std::vector<GLfloat> &t_Normals, GLuint t_IndexBufferID, GLuint t_VertexBufferID, GLuint t_VertexArrayID,
-                     IndexBuffer* t_IndexBuffer, VertexBuffer* t_VertexBuffer, VertexArray* t_VertexArray)
+                     std::shared_ptr<IndexBuffer> t_IndexBuffer, std::shared_ptr<VertexBuffer> t_VertexBuffer, std::shared_ptr<VertexArray> t_VertexArray)
                      :m_IndexBufferID(t_IndexBufferID),
                      m_VertexBufferID(t_VertexBufferID),
                      m_VertexArrayID(t_VertexArrayID),

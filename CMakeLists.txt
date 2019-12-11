@@ -16,7 +16,7 @@ endif()
 
 add_subdirectory(libs/imgui)
 
-add_library(42ngine SHARED
+add_library(42ngine STATIC
         42ngine.h
         src/Window.cpp
         src/VertexArray.cpp

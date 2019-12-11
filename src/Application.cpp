@@ -42,7 +42,7 @@ namespace ftn {
         glDepthRange(t_ZNear, t_ZFar);
     }
 
-    void Application::setWindow(Window *t_Window) {
+    void Application::setWindow(const std::shared_ptr<Window> &t_Window) {
         m_Window = t_Window;
 
         glewExperimental = true;
