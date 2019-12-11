@@ -12,17 +12,18 @@ namespace ftn {
         m_Locations.resize(m_NumberOfVAO);
         m_Offset.resize(m_NumberOfVAO);
 
+        //Si tous les VAO générés en même temps, malloc error
         for (unsigned int i = 0; i < m_NumberOfVAO; i++) {
             m_Locations[i] = 0;
             m_Offset[i] = 0;
             glGenVertexArrays(1, &m_ArrayIDs[i]);
         }
+        Log::Debug("Vertex Array constructed");
     }
 
     VertexArray::~VertexArray() {
-        for (unsigned int &m_ArrayID : m_ArrayIDs) {
-            glDeleteVertexArrays(1, &m_ArrayID);
-        }
+        glDeleteVertexArrays(m_NumberOfVAO, &m_ArrayIDs[0]);
+        Log::Debug("Vertex Array destructed");
     }
 
     template<>

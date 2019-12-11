@@ -7,15 +7,13 @@ namespace ftn {
     IndexBuffer::IndexBuffer(GLuint t_NumberOfBuffers)
             : m_NumberOfBuffers(t_NumberOfBuffers) {
         m_IndexBufferIDs.resize(t_NumberOfBuffers);
-        for (GLuint i = 0; i < t_NumberOfBuffers; ++i) {
-            glGenBuffers(1, &m_IndexBufferIDs[i]);
-        }
+        glGenBuffers(m_NumberOfBuffers, &m_IndexBufferIDs[0]);
+        Log::Debug("IndexBuffer constructed");
     }
 
     IndexBuffer::~IndexBuffer() {
-        for (GLuint i = 0; i < m_NumberOfBuffers; ++i) {
-            glDeleteBuffers(1, &m_IndexBufferIDs[i]);
-        }
+        glDeleteBuffers(m_NumberOfBuffers, &m_IndexBufferIDs[0]);
+        Log::Debug("IndexBuffer destructed");
     }
 
     void IndexBuffer::indexData(std::vector<GLfloat> &t_InData,
