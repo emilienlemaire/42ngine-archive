@@ -14,9 +14,12 @@ namespace ftn {
         GLFWwindow *m_Window = nullptr;
         GLuint m_Width;
         GLuint m_Height;
+
+        float m_LastTime = 0.f;
+
         const char *m_Title;
         bool m_EscToQuit = false;
-        bool m_VSync;
+        bool m_VSync = false;
     public:
         Window(GLuint t_Width, GLuint t_Height, const char *t_Title);
 
@@ -24,7 +27,7 @@ namespace ftn {
 
         void setEscapeToQuit(bool t_Value);
 
-        void update(GLfloat* angle) const;
+        void update();
 
         bool shouldClose() const;
 

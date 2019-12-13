@@ -38,27 +38,15 @@ namespace ftn {
 
     void Window::setInputMode(int t_Mode, int t_Value) const {
         glfwSetInputMode(m_Window, t_Mode, t_Value);
+        if(t_Mode == GLFW_RAW_MOUSE_MOTION)
+            glfwSetCursorPos(m_Window, 500.f, 350.f);
     }
 
     void Window::setEscapeToQuit(bool t_Value) {
         m_EscToQuit = t_Value;
     }
 
-    void Window::update(GLfloat* angle) const{
-
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-
-        {
-            ImGui::Begin("Test");
-            ImGui::SliderFloat("Angle", angle, 0.f, 360.f);
-            ImGui::End();
-        }
-
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+    void Window::update(){
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
     }
