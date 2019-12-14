@@ -69,14 +69,20 @@ namespace ftn {
 
     void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData) {
 
-        t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
-        for (unsigned long i = 0; i < t_InData.size(); i += 3) {
+        t_OutData.reserve((t_InData.size() / 7) * sizeof(Vertex));
+        for (unsigned long i = 0; i < t_InData.size(); i += 7) {
             t_OutData.push_back(Vertex{
                     glm::vec3(
                             t_InData[i + 0],
                             t_InData[i + 1],
                             t_InData[i + 2]
-                    )
+                    ),
+                    glm::vec3(
+                            t_InData[i + 3],
+                            t_InData[i + 4],
+                            t_InData[i + 5]
+                    ),
+                    t_InData[i + 6]
             });
         }
     }
@@ -87,14 +93,8 @@ namespace ftn {
             return false;
         } else {
             Vertex vert = it->first;
-            if(vert.position.x == t_Vertex.position.x
-            && vert.position.y == t_Vertex.position.y
-            && vert.position.z == t_Vertex.position.z)
-            {
-                t_Index = it->second;
-                return true;
-            }
-            return false;
+            t_Index = it->second;
+            return true;
         }
     }
 
@@ -106,52 +106,6 @@ namespace ftn {
             t_OutData.push_back(vertex.position.y);
             t_OutData.push_back(vertex.position.z);
         }
-    }
-
-    void IndexBuffer::indexData(std::vector<GLfloat> &t_InData, std::vector<GLfloat> &t_InNormals,
-                                std::vector<GLuint> &t_OutIndices, std::vector<GLfloat> &t_OutData,
-                                std::vector<GLfloat> &t_OutNormals) {
-        t_OutIndices.clear();
-        std::vector<Vertex> inData;
-        std::vector<Vertex> outData;
-        dataToVertex(t_InData, t_InNormals, inData);
-        std::map<Vertex, GLuint> vertices;
-
-        for (auto vertex : inData) {
-            GLuint index;
-            bool found = findVertex(vertices, vertex, index);
-            if (found) {
-                t_OutIndices.push_back(index);
-            } else {
-                outData.push_back(vertex);
-                GLuint newIndex = (GLuint) outData.size() - 1;
-                t_OutIndices.push_back(newIndex);
-                vertices[vertex] = newIndex;
-            }
-        }
-
-        vertexToData(outData, t_OutData, t_OutNormals);
-
-    }
-
-    void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals,
-                                   std::vector<Vertex> &t_OutData) {
-        t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
-        for (unsigned long i = 0; i < t_InData.size(); i += 3) {
-            t_OutData.push_back(Vertex{
-                    glm::vec3(
-                            t_InData[i + 0],
-                            t_InData[i + 1],
-                            t_InData[i + 2]
-                    ),
-                    glm::vec3(
-                            t_Normals[i + 0],
-                            t_Normals[i + 1],
-                            t_Normals[i + 2]
-                    )
-            });
-        }
-
     }
 
     void IndexBuffer::vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData,

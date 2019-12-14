@@ -8,9 +8,12 @@
 #include <GL/glew.h>
 
 namespace ftn {
+
     struct Vertex {
         glm::vec3 position;
         glm::vec3 normals = glm::vec3(0.f);
+        float depth = 0.f;
+
         bool operator<(const Vertex vertex) const {
             return memcmp((void*)this, (void*)&vertex, sizeof(Vertex)) > 0;
         }
