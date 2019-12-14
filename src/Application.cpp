@@ -11,7 +11,7 @@ namespace ftn {
     Application::Application() = default;
 
     Application::~Application() {
-        Destroy();
+        Log::Debug("Application Destroyed");
     }
 
     void Application::Init() {
@@ -32,8 +32,11 @@ namespace ftn {
     }
 
     void Application::Destroy() {
+        if (s_Instance) {
+            delete s_Instance;
+            s_Instance = nullptr;
+        }
         glfwTerminate();
-        delete s_Instance;
     }
 
     void Application::Enable(GLenum t_Cap) {
