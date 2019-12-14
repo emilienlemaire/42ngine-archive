@@ -233,7 +233,7 @@ COTIRE_DEBUG:BOOL=OFF
 // file.
 COTIRE_MAXIMUM_NUMBER_OF_UNITY_INCLUDES:STRING=0
 
-//Minimum number of sources in target required to enable use of
+//Minimum number of sources in target required to Enable use of
 // precompiled header.
 COTIRE_MINIMUM_NUMBER_OF_TARGET_SOURCES:STRING=2
 

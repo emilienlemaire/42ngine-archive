@@ -56,7 +56,7 @@ namespace ftn {
                 GLuint t_VertexArrayID,
                 std::shared_ptr<IndexBuffer> t_IndexBuffer,
                 std::shared_ptr<VertexBuffer> t_VertexBuffer,
-                std::shared_ptr<VertexArray> t_VertexArray);*/
+                std::shared_ptr<NewVertexArray> t_VertexArray);*/
 
         void render() const;
 

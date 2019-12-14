@@ -31,7 +31,7 @@ add_library(42ngine STATIC
         src/Element.cpp
         src/Element.h
         src/Camera.cpp
-        src/Camera.h src/ElementFeatures.cpp src/ElementFeatures.h src/newBuffers/VertexArray.cpp src/newBuffers/VertexArray.h)
+        src/Camera.h src/ElementFeatures.cpp src/ElementFeatures.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
