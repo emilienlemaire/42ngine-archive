@@ -4,6 +4,8 @@
 
 #include "Element.h"
 
+#include <utility>
+
 namespace ftn {
 
     Element::Element(std::vector<GLfloat> &t_Data, GLuint t_IndexBufferID, GLuint t_VertexBufferID, GLuint t_VertexArrayID,
@@ -11,9 +13,9 @@ namespace ftn {
                      :m_IndexBufferID(t_IndexBufferID),
                      m_VertexBufferID(t_VertexBufferID),
                      m_VertexArrayID(t_VertexArrayID),
-                     m_IndexBuffer(t_IndexBuffer),
-                     m_VertexBuffer(t_VertexBuffer),
-                     m_VertexArray(t_VertexArray)
+                     m_IndexBuffer(std::move(t_IndexBuffer)),
+                     m_VertexBuffer(std::move(t_VertexBuffer)),
+                     m_VertexArray(std::move(t_VertexArray))
     {
 
         m_VertexArray->bind(m_VertexArrayID);
@@ -22,7 +24,7 @@ namespace ftn {
 
         std::vector<GLuint> indices;
         std::vector<GLfloat> vertices;
-        m_IndexBuffer->indexData(t_Data, indices, vertices);
+        IndexBuffer::indexData(t_Data, indices, vertices);
         m_IndicesSize = indices.size();
         m_VerticesSize = vertices.size();
 
@@ -38,9 +40,9 @@ namespace ftn {
                      :m_IndexBufferID(t_IndexBufferID),
                      m_VertexBufferID(t_VertexBufferID),
                      m_VertexArrayID(t_VertexArrayID),
-                     m_IndexBuffer(t_IndexBuffer),
-                     m_VertexBuffer(t_VertexBuffer),
-                     m_VertexArray(t_VertexArray)
+                     m_IndexBuffer(std::move(t_IndexBuffer)),
+                     m_VertexBuffer(std::move(t_VertexBuffer)),
+                     m_VertexArray(std::move(t_VertexArray))
     {
 
         m_VertexArray->bind(m_VertexArrayID);
@@ -50,7 +52,7 @@ namespace ftn {
         std::vector<GLuint> indices;
         std::vector<GLfloat> vertices;
         std::vector<GLfloat> normals;
-        m_IndexBuffer->indexData(t_Data, t_Normals, indices, vertices, normals);
+        IndexBuffer::indexData(t_Data, t_Normals, indices, vertices, normals);
         m_IndicesSize = indices.size();
         m_VerticesSize = vertices.size();
         m_NormalsSize = normals.size();
@@ -66,15 +68,24 @@ namespace ftn {
 
     void Element::render() const {
         m_VertexArray->bind(m_VertexArrayID);
-        m_IndexBuffer->bind(m_IndexBufferID);
         glDrawElements(GL_TRIANGLES, m_IndicesSize, GL_UNSIGNED_INT, nullptr);
     }
 
-    Element::~Element() {
-
-    }
+    Element::~Element() = default;
 
     void Element::setColor(glm::vec3 t_Color) {
         m_Color = t_Color;
+    }
+
+    const ElementTransform &Element::getTransform() const {
+        return m_Transform;
+    }
+
+    void Element::setTransform(const ElementTransform &t_Transform) {
+        m_Transform = t_Transform;
+    }
+
+    void Element::enableTransform(bool t_Enabled){
+        m_Transform.enabled = t_Enabled;
     }
 }

@@ -108,21 +108,42 @@ namespace ftn {
         glUseProgram(0);
     }
 
-    void Shader::addUniformMat4(const GLchar *t_Name, glm::mat4 t_Mat) const {
-        GLint matrixID = glGetUniformLocation(m_ProgramID, t_Name);
-        glUseProgram(m_ProgramID);
+    void Shader::addUniformMat4(const GLchar *t_Name, glm::mat4 t_Mat) {
+        GLint matrixID = getLocation(t_Name);
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, &t_Mat[0][0]);
     }
 
-    void Shader::addUniform4f(const GLchar *T_Name, glm::vec4 t_Vec) const {
-        GLint uniformID = glGetUniformLocation(m_ProgramID, T_Name);
-        glUseProgram(m_ProgramID);
+    void Shader::addUniform1f(const GLchar *t_Name, float t_Value) {
+        GLint uniformID = getLocation(t_Name);
+        glUniform1f(uniformID, t_Value);
+    }
+
+    void Shader::addUniform3f(const GLchar *t_Name, glm::vec3 t_Vec) {
+        GLint uniformID = getLocation(t_Name);
+        glUniform3f(uniformID, t_Vec[0], t_Vec[1], t_Vec[2]);
+    }
+
+
+    void Shader::addUniform4f(const GLchar *t_Name, glm::vec4 t_Vec) {
+        GLint uniformID = getLocation(t_Name);
         glUniform4f(uniformID, t_Vec[0], t_Vec[1], t_Vec[2], t_Vec[3]);
     }
 
-    void Shader::addUniform3f(const GLchar *t_Name, glm::vec3 t_Vec) const {
-        GLint uniformID = glGetUniformLocation(m_ProgramID, t_Name);
-        glUseProgram(m_ProgramID);
-        glUniform3f(uniformID, t_Vec[0], t_Vec[1], t_Vec[2]);
+    void Shader::addUniform1i(const GLchar *t_Name, int t_Value) {
+        GLint uniformID = getLocation(t_Name);
+        glUniform1i(uniformID, t_Value);
+    }
+
+    int Shader::getLocation(const char *t_Name) {
+        auto it = m_UniformsIDs.find(t_Name);
+        if (it == m_UniformsIDs.end()){
+            int location = glGetUniformLocation(m_ProgramID, t_Name);
+            if (location == -1)
+                Log::Warn("Uniform " + std::string(t_Name) + " not found");
+
+            m_UniformsIDs[t_Name] = location;
+            return location;
+        }
+        return it->second;
     }
 }

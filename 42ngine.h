@@ -7,6 +7,7 @@
 #include "src/Application.h"
 #include "src/Camera.h"
 #include "src/Element.h"
+#include "src/ElementFeatures.h"
 #include "src/IndexBuffer.h"
 #include "src/Renderer.h"
 #include "src/Shader.h"

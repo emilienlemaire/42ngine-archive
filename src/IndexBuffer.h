@@ -19,21 +19,31 @@ namespace ftn {
     class IndexBuffer {
     private:
         GLuint m_NumberOfBuffers;
+
         std::vector<GLuint> m_IndexBufferIDs;
+
     public:
         explicit IndexBuffer(GLuint t_NumberOfBuffers);
 
         ~IndexBuffer();
 
-        void indexData(std::vector<GLfloat> &t_InData,
+        static void indexData(std::vector<GLfloat> &t_InData,
                        std::vector<GLuint> &t_OutIndices,
-                       std::vector<GLfloat> &t_OutData) const;
+                       std::vector<GLfloat> &t_OutData);
 
-        void indexData(std::vector<GLfloat> &t_InData,
+        static void indexData(std::vector<GLfloat> &t_InData,
                        std::vector<GLfloat> &t_InNormals,
                        std::vector<GLuint> &t_OutIndices,
                        std::vector<GLfloat> &t_OutData,
-                       std::vector<GLfloat> &t_OutNormals) const;
+                       std::vector<GLfloat> &t_OutNormals);
+
+        static void indexData(std::vector<GLfloat> &t_InData,
+                       std::vector<GLfloat> &t_InNormals,
+                       std::vector<GLubyte> &t_InDepth,
+                       std::vector<GLuint> &t_OutIndices,
+                       std::vector<GLfloat> &t_OutData,
+                       std::vector<GLfloat> &t_OutNormals,
+                       std::vector<GLubyte> &t_OutDepth);
 
         void setData(GLuint t_Size);
 
@@ -44,15 +54,15 @@ namespace ftn {
         void unbind() const;
 
     private:
-        void dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData) const;
+        static void dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData);
 
-        void dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals, std::vector<Vertex> &t_OutData) const;
+        static void dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals, std::vector<Vertex> &t_OutData);
 
-        void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData) const;
+        static void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData);
 
-        void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData, std::vector<GLfloat> &t_OutNormals) const;
+        static void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData, std::vector<GLfloat> &t_OutNormals);
 
-        bool findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index) const;
+        static bool findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index);
     };
 }
 

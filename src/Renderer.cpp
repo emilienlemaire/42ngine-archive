@@ -26,6 +26,9 @@ namespace ftn {
     float angle = 0.f;
     glm::mat4 model(1.f);
 
+    float win = 0.f;
+    float lose = 0.f;
+
     void Renderer::render(Shader& t_Shader) {
 
         if (m_Window.get() == nullptr)
@@ -46,29 +49,33 @@ namespace ftn {
         t_Shader.addUniform3f("u_ViewPos", glm::vec3(0.0, .0, 1000.f));
         t_Shader.addUniformMat4("u_FragModel", model * glm::translate(model, glm::vec3(-500.f, -350.f, 0.f)));
 
-        glm::mat4 rotation = glm::rotate(model, glm::radians(angle), glm::vec3(0.f, 1.f, 0.f));
-
-        t_Shader.addUniformMat4("u_Rotate", rotation);
-        t_Shader.addUniformMat4("u_FragRotate", rotation);
-
-
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
         {
-            ImGui::SliderFloat("xPos", &xPos, -500.f, 500.f);
-            ImGui::SliderFloat("yPos", &yPos, -500.f, 500.f);
-            ImGui::SliderFloat("zPos", &zPos, -2000.f, 2000.f);
-            ImGui::SliderFloat("angle", &angle, 0.f, 360.f);
+            ImGui::Text("%.3f ms (FPS: %.1f)", timeStep, 1/timeStep);
         }
 
-        for (const Element& element: m_Elements) {
+        for (int i = 0; i < m_Elements.size(); i++) {
+            Element element = m_Elements[i];
             glm::vec3 color = element.getColor();
 
-            if(color != m_LastColor)
+
+            if (element.getTransform().enabled){
+                t_Shader.addUniformMat4("u_Transform", element.getTransform().transform);
+                t_Shader.addUniform3f("u_Color", glm::vec3(.8f,0.2f,0.5f));
+            } else {
+                t_Shader.addUniformMat4("u_Transform", glm::mat4(1.f));
                 t_Shader.addUniform3f("u_Color", color);
+            }
+
+            if(i == 0){
+                t_Shader.addUniform1f("u_Win", win);
+            } else {
+                t_Shader.addUniform1f("u_Win", lose);
+            }
 
             m_LastColor = color;
             element.render();
@@ -91,6 +98,10 @@ namespace ftn {
     void Renderer::setWindow(const std::shared_ptr<Window> &t_Window) {
         m_Camera->setWindow(t_Window);
         m_Window = t_Window;
+    }
+
+    void Renderer::setTransform(int t_Index, bool t_Enable) {
+        m_Elements[t_Index].enableTransform(t_Enable);
     }
 
     Renderer::~Renderer() = default;

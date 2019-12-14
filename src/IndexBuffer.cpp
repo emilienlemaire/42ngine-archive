@@ -18,16 +18,15 @@ namespace ftn {
 
     void IndexBuffer::indexData(std::vector<GLfloat> &t_InData,
                                 std::vector<GLuint> &t_OutIndices,
-                                std::vector<GLfloat> &t_OutData) const {
+                                std::vector<GLfloat> &t_OutData)  {
         t_OutIndices.clear();
         std::vector<Vertex> inData;
         std::vector<Vertex> outData;
         dataToVertex(t_InData, inData);
         std::map<Vertex, GLuint> vertices;
 
-        for (unsigned long i = 0; i < inData.size(); ++i) {
+        for (auto vertex : inData) {
             GLuint index;
-            Vertex vertex = inData[i];
             bool found = findVertex(vertices, vertex, index);
             if (found) {
                 t_OutIndices.push_back(index);
@@ -68,7 +67,7 @@ namespace ftn {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-    void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData) const {
+    void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData) {
 
         t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
         for (unsigned long i = 0; i < t_InData.size(); i += 3) {
@@ -82,7 +81,7 @@ namespace ftn {
         }
     }
 
-    bool IndexBuffer::findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index) const {
+    bool IndexBuffer::findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index) {
         auto it = t_Map.find(t_Vertex);
         if (it == t_Map.end()) {
             return false;
@@ -99,7 +98,7 @@ namespace ftn {
         }
     }
 
-    void IndexBuffer::vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData) const {
+    void IndexBuffer::vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData) {
         t_OutData.clear();
         t_OutData.reserve(t_Vertices.size() * 3);
         for (auto vertex : t_Vertices) {
@@ -111,16 +110,15 @@ namespace ftn {
 
     void IndexBuffer::indexData(std::vector<GLfloat> &t_InData, std::vector<GLfloat> &t_InNormals,
                                 std::vector<GLuint> &t_OutIndices, std::vector<GLfloat> &t_OutData,
-                                std::vector<GLfloat> &t_OutNormals) const {
+                                std::vector<GLfloat> &t_OutNormals) {
         t_OutIndices.clear();
         std::vector<Vertex> inData;
         std::vector<Vertex> outData;
         dataToVertex(t_InData, t_InNormals, inData);
         std::map<Vertex, GLuint> vertices;
 
-        for (unsigned long i = 0; i < inData.size(); ++i) {
+        for (auto vertex : inData) {
             GLuint index;
-            Vertex vertex = inData[i];
             bool found = findVertex(vertices, vertex, index);
             if (found) {
                 t_OutIndices.push_back(index);
@@ -137,7 +135,8 @@ namespace ftn {
     }
 
     void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals,
-                                   std::vector<Vertex> &t_OutData) const {t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
+                                   std::vector<Vertex> &t_OutData) {
+        t_OutData.reserve((t_InData.size() / 3) * sizeof(Vertex));
         for (unsigned long i = 0; i < t_InData.size(); i += 3) {
             t_OutData.push_back(Vertex{
                     glm::vec3(
@@ -156,7 +155,7 @@ namespace ftn {
     }
 
     void IndexBuffer::vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData,
-                                   std::vector<GLfloat> &t_OutNormals) const {
+                                   std::vector<GLfloat> &t_OutNormals) {
         t_OutData.clear();
         t_OutData.reserve(t_Vertices.size() * 3);
         t_OutNormals.clear();

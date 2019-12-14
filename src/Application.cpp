@@ -38,6 +38,7 @@ namespace ftn {
     }
 
     void Application::setDepthFunc(GLenum t_Func, GLfloat t_ZNear, GLfloat t_ZFar) const {
+        glDepthMask(GL_TRUE);
         glDepthFunc(t_Func);
         glDepthRange(t_ZNear, t_ZFar);
     }
