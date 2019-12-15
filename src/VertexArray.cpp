@@ -5,55 +5,82 @@
 #include "VertexArray.h"
 
 namespace ftn {
-    VertexArray::VertexArray(GLuint t_NumberOfVAO)
-            : m_NumberOfVAO(t_NumberOfVAO) {
-        m_ArrayIDs.resize(m_NumberOfVAO);
-        m_DrawSize.resize(m_NumberOfVAO);
-        m_Locations.resize(m_NumberOfVAO);
-        m_Offset.resize(m_NumberOfVAO);
-
-        //Si tous les VAO générés en même temps, malloc error
-        for (unsigned int i = 0; i < m_NumberOfVAO; i++) {
-            m_Locations[i] = 0;
-            m_Offset[i] = 0;
-            glGenVertexArrays(1, &m_ArrayIDs[i]);
+    GLenum getGlType(BufferAttribType type) {
+        switch (type){
+            case BufferAttribType::None:
+                return GL_NONE;
+            case BufferAttribType::Float:
+                return GL_FLOAT;
+            case BufferAttribType::Float2:
+                return GL_FLOAT;
+            case BufferAttribType::Float3:
+                return GL_FLOAT;
+            case BufferAttribType::Float4:
+                return GL_FLOAT;
+            case BufferAttribType::Int:
+                return GL_INT;
         }
-        Log::Debug("Vertex Array constructed");
     }
 
-    VertexArray::~VertexArray() {
-        glDeleteVertexArrays(m_NumberOfVAO, &m_ArrayIDs[0]);
-        Log::Debug("Vertex Array destructed");
+    VertexArray* VertexArray::s_Instance = nullptr;
+    std::vector<BufferLayout> VertexArray::s_Layouts = std::vector<BufferLayout>();
+    std::vector<GLuint> VertexArray::s_ArrayIDs = std::vector<GLuint>();
+
+    VertexArray::VertexArray() = default;
+
+    VertexArray *VertexArray::Get() {
+        if(!s_Instance){
+            s_Instance = new VertexArray();
+        }
+        return s_Instance;
     }
 
-    template<>
-    void VertexArray::push<GLfloat>(int t_Index, int t_Count, int t_Size) {
-        glVertexAttribPointer(
-                m_Locations[t_Index],
-                t_Count,
-                GL_FLOAT,
-                GL_FALSE,
-                0,
-                (void *) m_Offset[t_Index]
-        );
-        glEnableVertexAttribArray(m_Locations[t_Index]);
-        m_Locations[t_Index]++;
-        m_Offset[t_Index] += t_Size;
+    void VertexArray::Create(unsigned int t_Count) {
+
+        if(!s_Instance){
+            s_Instance = new VertexArray();
+        }
+
+        int idx = s_ArrayIDs.size();
+        s_ArrayIDs.resize(s_ArrayIDs.size() + t_Count);
+        for (int i = 0; i < t_Count; ++i) {
+            glGenVertexArrays(1, &s_ArrayIDs[idx + i]);
+        }
     }
 
-    void VertexArray::bind(GLuint t_ArrayIndex) const {
-        glBindVertexArray(m_ArrayIDs[t_ArrayIndex]);
+    void VertexArray::Destroy() {
+        for (unsigned int & s_ArrayID : s_ArrayIDs) {
+            glDeleteVertexArrays(1, &s_ArrayID);
+        }
+        if(s_Instance)
+            delete s_Instance;
     }
 
-    void VertexArray::unbind() const {
-        glBindVertexArray(0);
+    void VertexArray::Bind(int t_Index) {
+        glBindVertexArray(s_ArrayIDs[t_Index]);
     }
 
-    GLuint VertexArray::getMNumberOfVao() const {
-        return m_NumberOfVAO;
+    void VertexArray::SetLayout(int t_Index, BufferLayout t_BufferLayout) {
+        if(t_Index >= s_Layouts.size())
+            s_Layouts.push_back(t_BufferLayout);
+        else
+            s_Layouts[t_Index] = t_BufferLayout;
+
+        Bind(t_Index);
+        std::vector<BufferAttribute> attribs = t_BufferLayout.getAttributes();
+        for (auto &attrib : attribs) {
+            glEnableVertexAttribArray(attrib.location);
+            glVertexAttribPointer(
+                    attrib.location,
+                    attrib.count,
+                    getGlType(attrib.type),
+                    GL_FALSE,
+                    t_BufferLayout.getStride(),
+                    (void*)attrib.offset
+            );
+        }
     }
 
-    const std::vector<GLuint> &VertexArray::getMDrawSize() const {
-        return m_DrawSize;
-    }
+    VertexArray::~VertexArray() = default;
+
 }

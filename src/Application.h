@@ -7,7 +7,7 @@
  */
 #pragma once
 
-//TODO: App init and enables;
+//TODO: App Init and enables;
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -16,16 +16,19 @@
 namespace ftn {
     class Application {
     private:
-        std::shared_ptr<Window> m_Window;
-    public:
+        static std::shared_ptr<Window> s_Window;
+        static Application* s_Instance;
         Application();
+    public:
         ~Application();
 
-        void init();
+        static void Init();
 
-        void destroy();
+        static void Destroy();
 
-        void enable(GLenum t_Cap) const;
+        static void Enable(GLenum t_Cap);
+
+        static Application* Get();
 
         /**
          * Set depth func and depth range
@@ -33,14 +36,14 @@ namespace ftn {
          * @param t_ZNear
          * @param t_ZFar
          */
-        void setDepthFunc(GLenum t_Function, GLfloat t_ZNear, GLfloat t_ZFar) const;
+        static void SetDepthFunc(GLenum t_Function, GLfloat t_ZNear, GLfloat t_ZFar);
 
-        void setClearColor(GLfloat t_R, GLfloat t_G, GLfloat t_B, GLfloat t_A) const;
+        static void SetClearColor(GLfloat t_R, GLfloat t_G, GLfloat t_B, GLfloat t_A);
 
         /**
          * Set the window pointer and initialize glew
          * @param t_Window
          */
-        void setWindow(const std::shared_ptr<Window> &t_Window);
+        static void SetWindow(const std::shared_ptr<Window> &t_Window);
     };
 }

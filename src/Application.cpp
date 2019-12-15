@@ -5,15 +5,17 @@
 #include "Application.h"
 
 namespace ftn {
-    Application::Application() {
-        init();
-    }
+    Application* Application::s_Instance = nullptr;
+    std::shared_ptr<Window> Application::s_Window = nullptr;
+
+    Application::Application() = default;
 
     Application::~Application() {
-        destroy();
+        Log::Debug("Application Destroyed");
     }
 
-    void Application::init() {
+    void Application::Init() {
+        s_Instance = new Application();
         if (!glfwInit()) {
             Log::Fatal("Failed to initialize GLFW");
         }
@@ -29,22 +31,26 @@ namespace ftn {
         glfwWindowHint(GLFW_DEPTH_BITS, 24);
     }
 
-    void Application::destroy() {
+    void Application::Destroy() {
+        if (s_Instance) {
+            delete s_Instance;
+            s_Instance = nullptr;
+        }
         glfwTerminate();
     }
 
-    void Application::enable(GLenum t_Cap) const {
+    void Application::Enable(GLenum t_Cap) {
         glEnable(t_Cap);
     }
 
-    void Application::setDepthFunc(GLenum t_Func, GLfloat t_ZNear, GLfloat t_ZFar) const {
+    void Application::SetDepthFunc(GLenum t_Function, GLfloat t_ZNear, GLfloat t_ZFar) {
         glDepthMask(GL_TRUE);
-        glDepthFunc(t_Func);
+        glDepthFunc(t_Function);
         glDepthRange(t_ZNear, t_ZFar);
     }
 
-    void Application::setWindow(const std::shared_ptr<Window> &t_Window) {
-        m_Window = t_Window;
+    void Application::SetWindow(const std::shared_ptr<Window> &t_Window) {
+        s_Window = t_Window;
 
         glewExperimental = true;
         if (glewInit() != GLEW_OK) {
@@ -59,7 +65,11 @@ namespace ftn {
         Log::Info(sstr.str());
     }
 
-    void Application::setClearColor(GLfloat t_R, GLfloat t_G, GLfloat t_B, GLfloat t_A) const {
+    void Application::SetClearColor(GLfloat t_R, GLfloat t_G, GLfloat t_B, GLfloat t_A) {
         glClearColor(t_R, t_G, t_B, t_A);
+    }
+
+    Application* Application::Get() {
+        return s_Instance;
     }
 }

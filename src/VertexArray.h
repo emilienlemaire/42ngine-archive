@@ -7,32 +7,28 @@
 
 #include <GL/glew.h>
 #include <vector>
+#include "BufferLayout.h"
 
 namespace ftn {
     class VertexArray {
     private:
-        GLuint m_NumberOfVAO;
-        std::vector<GLuint> m_ArrayIDs;
-        std::vector<GLuint> m_DrawSize;
-        std::vector<long> m_Offset;
-        std::vector<GLuint> m_Locations;
+        static VertexArray* s_Instance;
+        static std::vector<BufferLayout> s_Layouts;
+        static std::vector<GLuint> s_ArrayIDs;
+        VertexArray();
     public:
-        explicit VertexArray(GLuint t_NumberOfVAO);
-
         ~VertexArray();
 
-        void bind(GLuint t_ArrayIndex) const;
+        static VertexArray *Get();
 
-        void unbind() const;
+        static void Bind(int t_Index);
 
-        GLuint getMNumberOfVao() const;
+        static void Destroy();
 
-        template<typename T>
-        void push(int t_Index, int t_Count, int t_Size);
+        static std::vector<BufferLayout> GetLayouts() { return s_Layouts; }
 
-        const std::vector<GLuint> &getMDrawSize() const;
+        static void Create(unsigned int t_Count);
 
-        template<>
-        void push<GLfloat>(int t_Index, int t_Count, int t_Size);
+        static void SetLayout(int t_Index, BufferLayout t_BufferLayout);
     };
 }

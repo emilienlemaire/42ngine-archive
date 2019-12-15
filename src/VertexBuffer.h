@@ -9,19 +9,27 @@
 namespace ftn {
     class VertexBuffer {
     private:
-        GLuint m_NumberVertexBuffers;
-        std::vector<GLuint> m_VertexBuffersID;
+        static VertexBuffer* s_Instance;
+
+        static GLuint s_NumberVertexBuffers;
+
+        static std::vector<GLuint> s_VertexBuffersID;
+
+        VertexBuffer();
     public:
-        explicit VertexBuffer(GLuint t_NumberVertexBuffers);
 
         ~VertexBuffer();
 
-        void bind(GLuint t_BufferIndex) const;
+        static void Create(unsigned int t_NumberOfBuffers);
 
-        void unbind() const;
+        VertexBuffer* Get();
 
-        static void setData(GLuint t_Size);
+        static void Bind(GLuint t_BufferIndex);
 
-        void addSubData(const std::vector<GLfloat> &t_Data, long t_Offset = 0) const;
+        static void Unbind();
+
+        template <class T>
+                static void Push(const std::vector<T>& t_Data);
+                template<>  void Push<GLfloat>(const std::vector<GLfloat>& t_Data);
     };
 }
