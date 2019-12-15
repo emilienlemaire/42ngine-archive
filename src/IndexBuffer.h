@@ -21,51 +21,34 @@ namespace ftn {
 
     class IndexBuffer {
     private:
-        GLuint m_NumberOfBuffers;
+        static IndexBuffer* s_Instance;
 
-        std::vector<GLuint> m_IndexBufferIDs;
+        static GLuint s_NumberIndexBuffers;
 
+        static std::vector<GLuint> s_IndexBuffersID;
+
+        IndexBuffer();
     public:
-        explicit IndexBuffer(GLuint t_NumberOfBuffers);
+        static void Create(unsigned int t_NumberOfBuffers);
 
-        ~IndexBuffer();
+        static void IndexData(const std::vector<GLfloat>& t_InData,
+                std::vector<GLuint>& t_OutIndices,
+                std::vector<GLfloat>& t_OutData);
 
-        static void indexData(std::vector<GLfloat> &t_InData,
-                       std::vector<GLuint> &t_OutIndices,
-                       std::vector<GLfloat> &t_OutData);
+        static void Bind(unsigned int t_Index);
 
-        static void indexData(std::vector<GLfloat> &t_InData,
-                       std::vector<GLfloat> &t_InNormals,
-                       std::vector<GLuint> &t_OutIndices,
-                       std::vector<GLfloat> &t_OutData,
-                       std::vector<GLfloat> &t_OutNormals);
+        static void Unbind(unsigned int t_Index);
 
-        static void indexData(std::vector<GLfloat> &t_InData,
-                       std::vector<GLfloat> &t_InNormals,
-                       std::vector<GLubyte> &t_InDepth,
-                       std::vector<GLuint> &t_OutIndices,
-                       std::vector<GLfloat> &t_OutData,
-                       std::vector<GLfloat> &t_OutNormals,
-                       std::vector<GLubyte> &t_OutDepth);
-
-        void setData(GLuint t_Size);
-
-        void addSubData(const std::vector<GLuint> &t_Data, long t_Offset = 0) const;
-
-        void bind(GLuint t_BufferNumber) const;
-
-        void unbind() const;
+        template<class T>
+                static void Push(std::vector<T>& t_Data);
+                template<> void Push<GLuint>(std::vector<GLuint >& t_Data);
 
     private:
-        static void dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutData);
+        static void dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutVertices);
 
-        static void dataToVertex(const std::vector<GLfloat> &t_InData, const std::vector<GLfloat> &t_Normals, std::vector<Vertex> &t_OutData);
+        static bool findVertex(std::map<Vertex, int> &t_Map, Vertex &t_Vertex, unsigned int &t_Index);
 
-        static void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData);
-
-        static void vertexToData(std::vector<Vertex> &t_Vertices, std::vector<GLfloat> &t_OutData, std::vector<GLfloat> &t_OutNormals);
-
-        static bool findVertex(std::map<Vertex, GLuint> &t_Map, Vertex &t_Vertex, GLuint &t_Index);
+        static void vertexToData(const std::vector<Vertex>& t_Vertices, std::vector<GLfloat> &t_OutData);
     };
 }
 

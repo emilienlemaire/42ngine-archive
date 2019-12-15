@@ -30,7 +30,6 @@ namespace ftn {
 
         template <class T>
                 static void Push(const std::vector<T>& t_Data);
-
-                template<> static void Push<GLfloat>(const std::vector<GLfloat>& t_Data);
+                template<>  void Push<GLfloat>(const std::vector<GLfloat>& t_Data);
     };
 }

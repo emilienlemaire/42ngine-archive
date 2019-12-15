@@ -5,9 +5,12 @@
 #include "VertexBuffer.h"
 
 namespace ftn {
+
     VertexBuffer* VertexBuffer::s_Instance = nullptr;
     GLuint VertexBuffer::s_NumberVertexBuffers = 0;
     std::vector<GLuint> VertexBuffer::s_VertexBuffersID = std::vector<GLuint>();
+
+
     VertexBuffer::VertexBuffer() = default;
 
     VertexBuffer::~VertexBuffer() {
@@ -15,6 +18,9 @@ namespace ftn {
     }
 
     void VertexBuffer::Create(unsigned int t_NumberOfBuffers) {
+        if(!s_Instance)
+            s_Instance = new VertexBuffer();
+
         int index = s_VertexBuffersID.size();
         s_VertexBuffersID.resize(s_VertexBuffersID.size() + t_NumberOfBuffers);
 
