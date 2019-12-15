@@ -31,7 +31,7 @@ add_library(42ngine STATIC
         src/Camera.cpp
         src/Camera.h
         src/BufferLayout.cpp
-        src/BufferLayout.h)
+        src/BufferLayout.h src/Texture.cpp src/Texture.h)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
