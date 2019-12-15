@@ -19,7 +19,7 @@ namespace ftn {
     {
 
         m_VertexArray->bind(m_VertexArrayID);
-        m_VertexBuffer->bind(m_VertexBufferID);
+        m_VertexBuffer->Bind(m_VertexBufferID);
         m_IndexBuffer->bind(m_IndexBufferID);
 
         std::vector<GLuint> indices;
@@ -46,7 +46,7 @@ namespace ftn {
     {
 
         m_VertexArray->bind(m_VertexArrayID);
-        m_VertexBuffer->bind(m_VertexBufferID);
+        m_VertexBuffer->Bind(m_VertexBufferID);
         m_IndexBuffer->bind(m_IndexBufferID);
 
         std::vector<GLuint> indices;

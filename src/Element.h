@@ -7,7 +7,6 @@
 #include "VertexBuffer.h"
 #include "VertexArray.h"
 #include "IndexBuffer.h"
-#include "ElementFeatures.h"
 
 namespace ftn {
 
