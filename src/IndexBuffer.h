@@ -13,6 +13,7 @@ namespace ftn {
         glm::vec3 position;
         glm::vec3 normals = glm::vec3(0.f);
         float depth = 0.f;
+        glm::vec2 texture = glm::vec2(0.f);
 
         bool operator<(const Vertex vertex) const {
             return memcmp((void*)this, (void*)&vertex, sizeof(Vertex)) > 0;

@@ -10,6 +10,7 @@
 #include "src/IndexBuffer.h"
 #include "src/Renderer.h"
 #include "src/Shader.h"
+#include "src/Texture.h"
 #include "src/VertexArray.h"
 #include "src/VertexBuffer.h"
 #include "src/Window.h"

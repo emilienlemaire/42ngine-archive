@@ -69,8 +69,8 @@ namespace ftn {
     }
 
     void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutVertices) {
-        t_OutVertices.reserve((t_InData.size() / 7) * sizeof(Vertex));
-        for (int i = 0; i < t_InData.size(); i += 7) {
+        t_OutVertices.reserve((t_InData.size() / 9) * sizeof(Vertex));
+        for (int i = 0; i < t_InData.size(); i += 9) {
             glm::vec3 position(
                     t_InData[i + 0],
                     t_InData[i + 1],
@@ -84,10 +84,16 @@ namespace ftn {
 
             float depth = t_InData[i + 6];
 
+            glm::vec2 texture(
+                    t_InData[i + 7],
+                    t_InData[i + 8]
+                    );
+
             t_OutVertices.push_back({
                 position,
                 normal,
-                depth
+                depth,
+                texture
             });
         }
     }
@@ -103,7 +109,7 @@ namespace ftn {
 
     void IndexBuffer::vertexToData(const std::vector<Vertex>& t_Vertices, std::vector<GLfloat> &t_OutData) {
         t_OutData.clear();
-        t_OutData.reserve(7 * t_Vertices.size());
+        t_OutData.reserve(9 * t_Vertices.size());
 
         for (const auto &vertex : t_Vertices) {
             t_OutData.push_back(vertex.position.x);
@@ -115,6 +121,9 @@ namespace ftn {
             t_OutData.push_back(vertex.normals.z);
 
             t_OutData.push_back(vertex.depth);
+
+            t_OutData.push_back(vertex.texture.s);
+            t_OutData.push_back(vertex.texture.t);
         }
     }
 }
