@@ -19,6 +19,7 @@ namespace ftn {
         s_IndexBuffersID.resize(s_IndexBuffersID.size() + t_NumberOfBuffers);
 
         for (int i = 0; i < t_NumberOfBuffers; ++i) {
+            //Pour chaque IBO souhaité on le génère et on sauvegarde sont identifiant dans une adresse vide.
             glGenBuffers(1, &s_IndexBuffersID[index + i]);
         }
 
@@ -30,6 +31,7 @@ namespace ftn {
         std::vector<Vertex> vertices;
         std::vector<Vertex> outVertices;
 
+        //On transforme les données en un tableau de Vertex pour la map.
         dataToVertex(t_InData, vertices);
 
         std::map<Vertex, int> verticesMap;
@@ -38,8 +40,10 @@ namespace ftn {
             unsigned int index;
             bool found = findVertex(verticesMap, vertex, index);
             if (found) {
+                //Si le point est trouvé (i.e. toutes ses données sont similaires) on l'ajoute au tableau d'indice.
                 t_OutIndices.push_back(index);
             } else {
+                //Si le point n'est pas trouvé on ajoute ce point au tableau de vertices et on lui associe un nouvel indice.
                 outVertices.push_back(vertex);
                 unsigned int newIndex = outVertices.size() - 1;
                 t_OutIndices.push_back(newIndex);
@@ -47,14 +51,16 @@ namespace ftn {
             }
         }
 
+        //On transforme les Vertex en données lisible par la carte graphique.
         vertexToData(outVertices, t_OutData);
     }
 
     template<>
     void IndexBuffer::Push<GLuint>(std::vector<GLuint> &t_Data) {
+        //On envoie les données à la carte graphique.
         glBufferData(
                 GL_ELEMENT_ARRAY_BUFFER,
-                t_Data.size() * sizeof(GLuint),
+                t_Data.size() * sizeof(GLuint), //La carte graphique à besion de la taille en byte, pas juste du nombre de données
                 &t_Data[0],
                 GL_STATIC_DRAW
         );
@@ -69,6 +75,7 @@ namespace ftn {
     }
 
     void IndexBuffer::dataToVertex(const std::vector<GLfloat> &t_InData, std::vector<Vertex> &t_OutVertices) {
+        //On réserve la mémoire pour éviter les changements d'addresse inutiles.
         t_OutVertices.reserve((t_InData.size() / 9) * sizeof(Vertex));
         for (int i = 0; i < t_InData.size(); i += 9) {
             glm::vec3 position(
@@ -108,6 +115,8 @@ namespace ftn {
     }
 
     void IndexBuffer::vertexToData(const std::vector<Vertex>& t_Vertices, std::vector<GLfloat> &t_OutData) {
+        //On s'assure qu'il n'y a pas de données parasites et
+        // on réserve la mémoire pour éviter les changements d'addresse inutiles.
         t_OutData.clear();
         t_OutData.reserve(9 * t_Vertices.size());
 
@@ -125,5 +134,17 @@ namespace ftn {
             t_OutData.push_back(vertex.texture.s);
             t_OutData.push_back(vertex.texture.t);
         }
+    }
+
+    void IndexBuffer::Destroy() {
+        if(s_Instance){
+            glDeleteBuffers(s_NumberIndexBuffers, &s_IndexBuffersID[0]);
+            delete s_Instance;
+            s_Instance = nullptr;
+        }
+    }
+
+    IndexBuffer::~IndexBuffer() {
+        Log::Debug("42ngine Core", "IndexBuffer destroyed");
     }
 }

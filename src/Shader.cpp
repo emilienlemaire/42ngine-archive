@@ -108,6 +108,7 @@ namespace ftn {
         glUseProgram(0);
     }
 
+    //Les fonctions ci-dessous envoie les uniforms au programme des shaders
     void Shader::addUniformMat4(const GLchar *t_Name, glm::mat4 t_Mat) {
         GLint matrixID = getLocation(t_Name);
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, &t_Mat[0][0]);
@@ -134,6 +135,7 @@ namespace ftn {
         glUniform1i(uniformID, t_Value);
     }
 
+    //On sauvegarde l'emplacement des uniforms afin d'éviter de le demander à la carte graphique à chaque changement de l'uniform.
     int Shader::getLocation(const char *t_Name) {
         auto it = m_UniformsIDs.find(t_Name);
         if (it == m_UniformsIDs.end()){

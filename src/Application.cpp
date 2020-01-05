@@ -16,6 +16,7 @@ namespace ftn {
 
     void Application::Init() {
         Log::createConsole("42ngine Core", Log::LevelDebug);
+        //On initialise le pointeur static de l'application et GLFW. Si GLFW est aml initialisé on arrête le programme
         s_Instance = new Application();
         if (!glfwInit()) {
             Log::Fatal("42ngine Core", "Failed to initialize GLFW");
@@ -23,6 +24,7 @@ namespace ftn {
 
         Log::Debug("42ngine Core", "GLFW Initialized");
 
+        //On définie différents paramètres pour notre application.
         glfwWindowHint(GLFW_SAMPLES, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -32,6 +34,7 @@ namespace ftn {
     }
 
     void Application::Destroy() {
+        //Si l'application a été initialisé on la supprime
         if (s_Instance) {
             delete s_Instance;
             s_Instance = nullptr;
@@ -49,10 +52,13 @@ namespace ftn {
         glDepthRange(t_ZNear, t_ZFar);
     }
 
-    void Application::SetWindow(const std::shared_ptr<Window> &t_Window) {
-        s_Window = t_Window;
+    void Application::InitGlew() {
+        //Afin que glew s'initialise il faut une fenêtre j'ai donc fait une fonction différente
+        // qui est appelée plus tard dans main.
 
         glewExperimental = true;
+
+        //Si glew est mal initialisé on stop l'application.
         if (glewInit() != GLEW_OK) {
             Log::Fatal("42ngine Core", "Failed to initialize glew");
         }
@@ -71,5 +77,9 @@ namespace ftn {
 
     Application* Application::Get() {
         return s_Instance;
+    }
+
+    void Application::SetBlendFunc(GLenum t_SFactor, GLenum t_DFactor) {
+        glBlendFunc(t_SFactor, t_DFactor);
     }
 }

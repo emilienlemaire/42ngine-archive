@@ -9,10 +9,12 @@
 #include <CppLogger/src/Log.h>
 
 namespace ftn {
+    //Chaque attribut de donnée doit avoir un type prédéfini
     enum class BufferAttribType{
         None = 0, Float, Float2, Float3, Float4, Int
     };
 
+    //On récupère la taille des données en octet en fonction du type.
     static unsigned int sizeFromType(BufferAttribType type){
         switch (type){
 
@@ -32,6 +34,7 @@ namespace ftn {
         }
     }
 
+    //On récupère le nombre d'élément dans chaque donnée en fonction du type.
     static unsigned int countFromType(BufferAttribType type){
         switch (type){
 
@@ -50,6 +53,7 @@ namespace ftn {
                 return 1;
         }
     }
+
 
     struct BufferAttribute {
         std::string name;

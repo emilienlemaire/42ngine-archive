@@ -6,6 +6,7 @@
 
 #include <map>
 #include <GL/glew.h>
+#include <CppLogger/src/Log.h>
 
 namespace ftn {
 
@@ -30,7 +31,11 @@ namespace ftn {
 
         IndexBuffer();
     public:
+
+        ~IndexBuffer();
+
         static void Create(unsigned int t_NumberOfBuffers);
+        static void Destroy();
 
         static void IndexData(const std::vector<GLfloat>& t_InData,
                 std::vector<GLuint>& t_OutIndices,

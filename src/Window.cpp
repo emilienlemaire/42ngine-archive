@@ -12,14 +12,17 @@ namespace ftn {
 
         m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, nullptr, nullptr);
 
+        //Si la fen^^re ne se crée pas on stop le programme.
         if (!m_Window) {
             Log::Fatal("42ngine Core", "GLFW failed to create the window");
         }
 
         Log::Debug("42ngine Core", "Window created");
 
+        //On lie la fenêtre à GLFW
         glfwMakeContextCurrent(m_Window);
 
+        //Initlisation de ImGUI.
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
 
@@ -43,6 +46,7 @@ namespace ftn {
     }
 
     void Window::setEscapeToQuit(bool t_Value) {
+        //Si l'utilisateur veut pouvoir quitter le programme avec la touche escape on lui en donne l'opportunité.
         m_EscToQuit = t_Value;
     }
 
@@ -52,6 +56,7 @@ namespace ftn {
     }
 
     bool Window::shouldClose() const{
+        //Si l'utilisateur veut pouvoir quitter le programme avec la touche escape on lui en donne l'opportunité.
         bool esc = false;
         if (m_EscToQuit){
             esc = glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS;
@@ -63,6 +68,8 @@ namespace ftn {
     void Window::setVSync(bool t_Enable) {
         m_VSync = t_Enable;
         if (m_VSync)
+            //On lie le rafraîchissement de l'application à celui de l'écran afin d'éviter des calcul inutile et
+            // pour de meilleurs performances.
             glfwSwapInterval(1);
         else
             glfwSwapInterval(0);

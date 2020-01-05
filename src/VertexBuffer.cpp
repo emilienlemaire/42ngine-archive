@@ -14,7 +14,7 @@ namespace ftn {
     VertexBuffer::VertexBuffer() = default;
 
     VertexBuffer::~VertexBuffer() {
-        glDeleteBuffers(s_NumberVertexBuffers, &s_VertexBuffersID[0]);
+        Log::Debug("42ngine Core", "VertexBuffer destroyed");
     }
 
     void VertexBuffer::Create(unsigned int t_NumberOfBuffers) {
@@ -25,7 +25,7 @@ namespace ftn {
         s_VertexBuffersID.resize(s_VertexBuffersID.size() + t_NumberOfBuffers);
 
         for (int i = 0; i < t_NumberOfBuffers; ++i) {
-
+            //Pour chaque VBO souhaité on le génère et on sauvegarde sont identifiant dans une adresse vide.
             glGenBuffers(1, &s_VertexBuffersID[index + i]);
 
         }
@@ -43,6 +43,7 @@ namespace ftn {
 
     template<>
     void VertexBuffer::Push<GLfloat>(const std::vector<GLfloat> &t_Data) {
+        //On envoie les données à la carte graphique.
         glBufferData(
                 GL_ARRAY_BUFFER,
                 t_Data.size() * sizeof(GLfloat),
@@ -55,5 +56,13 @@ namespace ftn {
         if(!s_Instance)
             s_Instance = new VertexBuffer();
         return s_Instance;
+    }
+
+    void VertexBuffer::Destroy() {
+        if (s_Instance) {
+            glDeleteBuffers(s_NumberVertexBuffers, &s_VertexBuffersID[0]);
+            delete s_Instance;
+            s_Instance = nullptr;
+        }
     }
 }

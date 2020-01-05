@@ -56,6 +56,8 @@ namespace ftn {
     }
 
     void Camera::onUpdate(float t_TimeStep) {
+        //On utilise timeStep afin de rendre la caméra plus fluide.
+
 
         if(glfwGetKey(m_Window->getWindow(), GLFW_KEY_W) == GLFW_PRESS
            || glfwGetKey(m_Window->getWindow(), GLFW_KEY_W) == GLFW_REPEAT){
