@@ -45,9 +45,10 @@ find_path(GLEW_INCLUDE_DIR GL/glew.h)
 find_package(GLEW 2.1.0 REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(CppLogger REQUIRED)
+find_package(glm REQUIRED)
 
 target_include_directories(42ngine PUBLIC ${INCLUDE_DIRECTORIES} ${OPENGL_INCLUDE_DIR} ${CPPLOGGER_INCLUDE_DIR})
-target_link_libraries(42ngine imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} ${CPPLOGGER_LIBRARY})
+target_link_libraries(42ngine glm imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} ${CPPLOGGER_LIBRARY})
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
     install(TARGETS 42ngine DESTINATION lib)
