@@ -55,7 +55,7 @@ namespace ftn {
         }
         if (s_Instance) {
             delete s_Instance;
-            s_Instance = nullptr
+            s_Instance = nullptr;
         }
     }
 
