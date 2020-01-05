@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <CppLogger/src/Log.h>
+
 namespace ftn {
     enum class BufferAttribType{
         None = 0, Float, Float2, Float3, Float4, Int
@@ -15,7 +17,7 @@ namespace ftn {
         switch (type){
 
             case BufferAttribType::None:
-                Log::Error("Unknown buffer attribute type");
+                Log::Error("42ngine Core", "Unknown buffer attribute type");
                 return 0;
             case BufferAttribType::Float:
                 return 4;
@@ -34,7 +36,7 @@ namespace ftn {
         switch (type){
 
             case BufferAttribType::None:
-                Log::Error("Unknown buffer attribute type");
+                Log::Error("42ngine Core", "Unknown buffer attribute type");
                 return 0;
             case BufferAttribType::Float:
                 return 1;

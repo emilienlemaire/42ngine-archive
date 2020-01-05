@@ -1,5 +1,0 @@
-"/Users/emilienlemaire/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.7142.39/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /Volumes/LaCie/CLionProjects/42ngine
--- cotire 1.8.0 loaded.
--- Configuring done
--- Generating done
--- Build files have been written to: /Volumes/LaCie/CLionProjects/42ngine/cmake-build-release

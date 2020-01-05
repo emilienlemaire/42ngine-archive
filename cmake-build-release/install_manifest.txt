@@ -1,6 +1,0 @@
-/usr/local/lib/lib42ngine.a
-/usr/local/include/42ngine/42ngine.h
-/usr/local/include/42ngine/Window.h
-/usr/local/include/42ngine/VertexArray.h
-/usr/local/include/42ngine/VertexBuffer.h
-/usr/local/include/42ngine/Shader.h

@@ -57,7 +57,7 @@ namespace ftn {
         if(s_Instance){
             delete s_Instance;
         }
-        Log::Debug("Texture destroyed");
+        Log::Debug("42ngine Core", "Texture destroyed");
     }
 
     Texture::~Texture(){

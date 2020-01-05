@@ -13,10 +13,10 @@ namespace ftn {
         m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, nullptr, nullptr);
 
         if (!m_Window) {
-            Log::Fatal("GLFW failed to create the window");
+            Log::Fatal("42ngine Core", "GLFW failed to create the window");
         }
 
-        Log::Debug("Window created");
+        Log::Debug("42ngine Core", "Window created");
 
         glfwMakeContextCurrent(m_Window);
 

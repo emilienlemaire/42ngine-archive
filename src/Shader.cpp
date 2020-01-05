@@ -3,7 +3,7 @@
 //
 
 #include "Shader.h"
-#include <Log.h>
+#include <CppLogger/src/Log.h>
 namespace ftn {
     Shader::Shader(const std::string &t_VertexShaderPath, const std::string &t_FragmentShaderPath) {
         GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
@@ -139,7 +139,7 @@ namespace ftn {
         if (it == m_UniformsIDs.end()){
             int location = glGetUniformLocation(m_ProgramID, t_Name);
             if (location == -1)
-                Log::Warn("Uniform " + std::string(t_Name) + " not found");
+                Log::Warn("42ngine Core", "Uniform " + std::string(t_Name) + " not found");
 
             m_UniformsIDs[t_Name] = location;
             return location;

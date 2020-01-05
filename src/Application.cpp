@@ -11,16 +11,17 @@ namespace ftn {
     Application::Application() = default;
 
     Application::~Application() {
-        Log::Debug("Application Destroyed");
+        Log::Debug("42ngine Core", "Application Destroyed");
     }
 
     void Application::Init() {
+        Log::createConsole("42ngine Core", Log::LevelDebug);
         s_Instance = new Application();
         if (!glfwInit()) {
-            Log::Fatal("Failed to initialize GLFW");
+            Log::Fatal("42ngine Core", "Failed to initialize GLFW");
         }
 
-        Log::Debug("GLFW Initialized");
+        Log::Debug("42ngine Core", "GLFW Initialized");
 
         glfwWindowHint(GLFW_SAMPLES, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -53,15 +54,15 @@ namespace ftn {
 
         glewExperimental = true;
         if (glewInit() != GLEW_OK) {
-            Log::Fatal("Failed to initialize glew");
+            Log::Fatal("42ngine Core", "Failed to initialize glew");
         }
-        Log::Debug("glew initialized");
+        Log::Debug("42ngine Core", "glew initialized");
 
         std::stringstream sstr;
 
         sstr << "OpenGL Version: " << glGetString(GL_VERSION);
 
-        Log::Info(sstr.str());
+        Log::Info("42ngine Core", sstr.str());
     }
 
     void Application::SetClearColor(GLfloat t_R, GLfloat t_G, GLfloat t_B, GLfloat t_A) {
