@@ -53,6 +53,17 @@ namespace ftn {
         glBindTexture(GL_TEXTURE_2D, s_TextureIDs[t_Index]);
     }
 
-    Texture::~Texture() = default;
+    void Texture::Destroy() {
+        if(s_Instance){
+            delete s_Instance;
+        }
+        Log::Debug("Texture destroyed");
+    }
+
+    Texture::~Texture(){
+        for (auto &textureId : s_TextureIDs) {
+            glDeleteTextures(1, &textureId);
+        }
+    };
 }
 

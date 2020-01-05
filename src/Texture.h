@@ -23,6 +23,8 @@ namespace ftn {
 
         static void Push(unsigned int t_Index, const char* t_TexturePath);
 
+        static void Destroy();
+
         ~Texture();
     };
 }
