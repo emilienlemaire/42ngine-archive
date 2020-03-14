@@ -4,6 +4,9 @@
 
 #pragma once
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
 #include "src/Core/Application.h"
 #include "src/Camera.h"
 #include "src/Element.h"
@@ -15,4 +18,4 @@
 #include "src/VertexArray.h"
 #include "src/VertexBuffer.h"
 #include "src/Window.h"
-#include <CppLogger/src/Log.h>
+#include <Log.h>

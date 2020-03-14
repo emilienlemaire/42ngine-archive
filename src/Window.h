@@ -6,7 +6,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <CppLogger/src/Log.h>
+#include <Log.h>
 
 namespace ftn {
     class Window {

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <CppLogger/src/Log.h>
+#include <Log.h>
 
 namespace ftn {
     //Chaque attribut de donnée doit avoir un type prédéfini

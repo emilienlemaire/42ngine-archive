@@ -29,7 +29,6 @@ else()
 endif()
 
 add_subdirectory(libs/imgui)
-add_subdirectory(libs/CppLogger)
 
 add_library(42ngine STATIC
         42ngine.h
@@ -62,6 +61,7 @@ find_package(glm REQUIRED)
 find_package(OpenCV REQUIRED)
 
 target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR} libs)
+target_include_directories(42ngine PRIVATE .)
 target_link_libraries(42ngine glm imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} CppLogger)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")

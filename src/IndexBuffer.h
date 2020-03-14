@@ -6,7 +6,7 @@
 
 #include <map>
 #include <GL/glew.h>
-#include <CppLogger/src/Log.h>
+#include <Log.h>
 
 namespace ftn {
 

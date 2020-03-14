@@ -5,7 +5,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include <CppLogger/src/Log.h>
+#include <Log.h>
 
 namespace ftn {
     class VertexBuffer {

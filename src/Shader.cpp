@@ -3,7 +3,7 @@
 //
 
 #include "Shader.h"
-#include <CppLogger/src/Log.h>
+#include <Log.h>
 namespace ftn {
     Shader::Shader(const std::string &t_VertexShaderPath, const std::string &t_FragmentShaderPath) {
         GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
