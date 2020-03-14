@@ -5,7 +5,6 @@
 #include "Application.h"
 
 namespace ftn {
-    Application* Application::s_Instance = nullptr;
     std::shared_ptr<Window> Application::s_Window = nullptr;
 
     Application::Application() = default;
@@ -17,7 +16,6 @@ namespace ftn {
     void Application::Init() {
         Log::createConsole("42ngine Core", Log::LevelDebug);
         //On initialise le pointeur static de l'application et GLFW. Si GLFW est aml initialisé on arrête le programme
-        s_Instance = new Application();
         if (!glfwInit()) {
             Log::Fatal("42ngine Core", "Failed to initialize GLFW");
         }
@@ -31,15 +29,6 @@ namespace ftn {
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,GL_TRUE);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_DEPTH_BITS, 24);
-    }
-
-    void Application::Destroy() {
-        //Si l'application a été initialisé on la supprime
-        if (s_Instance) {
-            delete s_Instance;
-            s_Instance = nullptr;
-        }
-        glfwTerminate();
     }
 
     void Application::Enable(GLenum t_Cap) {
@@ -75,11 +64,11 @@ namespace ftn {
         glClearColor(t_R, t_G, t_B, t_A);
     }
 
-    Application* Application::Get() {
-        return s_Instance;
-    }
-
     void Application::SetBlendFunc(GLenum t_SFactor, GLenum t_DFactor) {
         glBlendFunc(t_SFactor, t_DFactor);
+    }
+
+    void Application::run() {
+        while(true);
     }
 }

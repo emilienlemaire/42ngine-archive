@@ -4,9 +4,10 @@
 
 #pragma once
 
-#include "src/Application.h"
+#include "src/Core/Application.h"
 #include "src/Camera.h"
 #include "src/Element.h"
+#include "src/Core/EntryPoint.h"
 #include "src/IndexBuffer.h"
 #include "src/Renderer.h"
 #include "src/Shader.h"

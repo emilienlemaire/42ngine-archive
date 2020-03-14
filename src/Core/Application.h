@@ -7,29 +7,23 @@
  */
 #pragma once
 
-//TODO: App Init and enables;
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "Window.h"
+#include "../Window.h"
 
 namespace ftn {
     //Classe statique qui contrôle la création et le réglage de l'application
     class Application {
     private:
         static std::shared_ptr<Window> s_Window;
-        static Application* s_Instance;
-        Application();
     public:
-        ~Application();
+        Application();
+        virtual ~Application();
 
+        void run();
         static void Init();
 
-        static void Destroy();
-
         static void Enable(GLenum t_Cap);
-
-        static Application* Get();
 
         /**
          * Set depth func and depth range
@@ -48,4 +42,6 @@ namespace ftn {
          */
         static void InitGlew();
     };
+
+    Application* createApplication();
 }
