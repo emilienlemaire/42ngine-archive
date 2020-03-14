@@ -5,6 +5,7 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <CppLogger/src/Log.h>
 
 namespace ftn {
     class VertexBuffer {
@@ -21,6 +22,7 @@ namespace ftn {
         ~VertexBuffer();
 
         static void Create(unsigned int t_NumberOfBuffers);
+        static void Destroy();
 
         VertexBuffer* Get();
 

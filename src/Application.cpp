@@ -11,17 +11,20 @@ namespace ftn {
     Application::Application() = default;
 
     Application::~Application() {
-        Log::Debug("Application Destroyed");
+        Log::Debug("42ngine Core", "Application Destroyed");
     }
 
     void Application::Init() {
+        Log::createConsole("42ngine Core", Log::LevelDebug);
+        //On initialise le pointeur static de l'application et GLFW. Si GLFW est aml initialisé on arrête le programme
         s_Instance = new Application();
         if (!glfwInit()) {
-            Log::Fatal("Failed to initialize GLFW");
+            Log::Fatal("42ngine Core", "Failed to initialize GLFW");
         }
 
-        Log::Debug("GLFW Initialized");
+        Log::Debug("42ngine Core", "GLFW Initialized");
 
+        //On définie différents paramètres pour notre application.
         glfwWindowHint(GLFW_SAMPLES, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -31,6 +34,7 @@ namespace ftn {
     }
 
     void Application::Destroy() {
+        //Si l'application a été initialisé on la supprime
         if (s_Instance) {
             delete s_Instance;
             s_Instance = nullptr;
@@ -48,20 +52,23 @@ namespace ftn {
         glDepthRange(t_ZNear, t_ZFar);
     }
 
-    void Application::SetWindow(const std::shared_ptr<Window> &t_Window) {
-        s_Window = t_Window;
+    void Application::InitGlew() {
+        //Afin que glew s'initialise il faut une fenêtre j'ai donc fait une fonction différente
+        // qui est appelée plus tard dans main.
 
         glewExperimental = true;
+
+        //Si glew est mal initialisé on stop l'application.
         if (glewInit() != GLEW_OK) {
-            Log::Fatal("Failed to initialize glew");
+            Log::Fatal("42ngine Core", "Failed to initialize glew");
         }
-        Log::Debug("glew initialized");
+        Log::Debug("42ngine Core", "glew initialized");
 
         std::stringstream sstr;
 
         sstr << "OpenGL Version: " << glGetString(GL_VERSION);
 
-        Log::Info(sstr.str());
+        Log::Info("42ngine Core", sstr.str());
     }
 
     void Application::SetClearColor(GLfloat t_R, GLfloat t_G, GLfloat t_B, GLfloat t_A) {
@@ -70,5 +77,9 @@ namespace ftn {
 
     Application* Application::Get() {
         return s_Instance;
+    }
+
+    void Application::SetBlendFunc(GLenum t_SFactor, GLenum t_DFactor) {
+        glBlendFunc(t_SFactor, t_DFactor);
     }
 }

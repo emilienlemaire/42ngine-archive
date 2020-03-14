@@ -17,6 +17,7 @@ namespace ftn {
         }
         s_TextureIDs.reserve(s_TextureIDs.size() + t_NumberOfTextures);
         for (int i = 0; i < t_NumberOfTextures; ++i) {
+            //Pour chaque texture souhaité on le génère et on sauvegarde sont identifiant dans un tableau.
             GLuint tID;
             glGenTextures(1, &tID);
             s_TextureIDs.push_back(tID);
@@ -27,9 +28,10 @@ namespace ftn {
         Bind(t_Index);
 
         cv::Mat image = cv::imread(t_TexturePath, CV_LOAD_IMAGE_UNCHANGED);
+        //L'image est lue à l'envers avec OpenCV.
         cv::flip(image, image, 0);
 
-
+        //On envoie la texture à la carte graphique.
         glTexImage2D(
                 GL_TEXTURE_2D,
                 0,
@@ -53,6 +55,18 @@ namespace ftn {
         glBindTexture(GL_TEXTURE_2D, s_TextureIDs[t_Index]);
     }
 
-    Texture::~Texture() = default;
+    void Texture::Destroy() {
+        if(s_Instance){
+            delete s_Instance;
+            s_Instance = nullptr;
+        }
+        Log::Debug("42ngine Core", "Texture destroyed");
+    }
+
+    Texture::~Texture(){
+        for (auto &textureId : s_TextureIDs) {
+            glDeleteTextures(1, &textureId);
+        }
+    };
 }
 

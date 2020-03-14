@@ -44,16 +44,19 @@ namespace ftn {
         int idx = s_ArrayIDs.size();
         s_ArrayIDs.resize(s_ArrayIDs.size() + t_Count);
         for (int i = 0; i < t_Count; ++i) {
+            //Pour chaque VAO souhaité on le génère et on sauvegarde sont identifiant dans une adresse vide.
             glGenVertexArrays(1, &s_ArrayIDs[idx + i]);
         }
     }
 
     void VertexArray::Destroy() {
-        for (unsigned int & s_ArrayID : s_ArrayIDs) {
+        for (unsigned int &s_ArrayID : s_ArrayIDs) {
             glDeleteVertexArrays(1, &s_ArrayID);
         }
-        if(s_Instance)
+        if (s_Instance) {
             delete s_Instance;
+            s_Instance = nullptr;
+        }
     }
 
     void VertexArray::Bind(int t_Index) {
@@ -61,6 +64,7 @@ namespace ftn {
     }
 
     void VertexArray::SetLayout(int t_Index, BufferLayout t_BufferLayout) {
+        //On sauvegarde la forme des données dans un tableau.
         if(t_Index >= s_Layouts.size())
             s_Layouts.push_back(t_BufferLayout);
         else
@@ -68,6 +72,7 @@ namespace ftn {
 
         Bind(t_Index);
         std::vector<BufferAttribute> attribs = t_BufferLayout.getAttributes();
+        //On crée les attributs du VAO en fonction de la forme des données.
         for (auto &attrib : attribs) {
             glEnableVertexAttribArray(attrib.location);
             glVertexAttribPointer(

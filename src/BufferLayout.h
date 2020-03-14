@@ -6,16 +6,20 @@
 
 #pragma once
 
+#include <CppLogger/src/Log.h>
+
 namespace ftn {
+    //Chaque attribut de donnée doit avoir un type prédéfini
     enum class BufferAttribType{
         None = 0, Float, Float2, Float3, Float4, Int
     };
 
+    //On récupère la taille des données en octet en fonction du type.
     static unsigned int sizeFromType(BufferAttribType type){
         switch (type){
 
             case BufferAttribType::None:
-                Log::Error("Unknown buffer attribute type");
+                Log::Error("42ngine Core", "Unknown buffer attribute type");
                 return 0;
             case BufferAttribType::Float:
                 return 4;
@@ -30,11 +34,12 @@ namespace ftn {
         }
     }
 
+    //On récupère le nombre d'élément dans chaque donnée en fonction du type.
     static unsigned int countFromType(BufferAttribType type){
         switch (type){
 
             case BufferAttribType::None:
-                Log::Error("Unknown buffer attribute type");
+                Log::Error("42ngine Core", "Unknown buffer attribute type");
                 return 0;
             case BufferAttribType::Float:
                 return 1;
@@ -48,6 +53,7 @@ namespace ftn {
                 return 1;
         }
     }
+
 
     struct BufferAttribute {
         std::string name;

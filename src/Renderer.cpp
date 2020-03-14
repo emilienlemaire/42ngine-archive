@@ -32,7 +32,7 @@ namespace ftn {
     void Renderer::render(Shader& t_Shader) {
 
         if (m_Window.get() == nullptr)
-            Log::Fatal("You must set up a window for Renderer");
+            Log::Fatal("42ngine Core", "You must set up a window for Renderer");
 
         float now = glfwGetTime();
         float timeStep = now - m_LastTime;

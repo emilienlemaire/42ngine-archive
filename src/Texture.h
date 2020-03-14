@@ -6,6 +6,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
+#include <CppLogger/src/Log.h>
 
 namespace ftn {
     class Texture {
@@ -22,6 +23,8 @@ namespace ftn {
         static void Bind(unsigned int t_Index);
 
         static void Push(unsigned int t_Index, const char* t_TexturePath);
+
+        static void Destroy();
 
         ~Texture();
     };

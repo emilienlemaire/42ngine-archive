@@ -14,3 +14,4 @@
 #include "src/VertexArray.h"
 #include "src/VertexBuffer.h"
 #include "src/Window.h"
+#include <CppLogger/src/Log.h>

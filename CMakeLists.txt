@@ -5,10 +5,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CCACHE_SLOPPINESS pch_defines,time_macros)
 set(HEADERS 42ngine.h src/Window.h src/VertexArray.h src/VertexBuffer.h src/Shader.h)
-set(INCLUDE_DIRECTORIES /usr/local/Cellar/opencv@2/2.4.13.7_5/include)
-set(OPENCV_LIBS /usr/local/Cellar/opencv@2/2.4.13.7_5/lib/libopencv_core.dylib
-        /usr/local/Cellar/opencv@2/2.4.13.7_5/lib/libopencv_imgproc.dylib
-        /usr/local/Cellar/opencv@2/2.4.13.7_5/lib/libopencv_highgui.dylib)
 include(cotire)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -19,6 +15,7 @@ else()
 endif()
 
 add_subdirectory(libs/imgui)
+add_subdirectory(libs/CppLogger)
 
 add_library(42ngine STATIC
         42ngine.h
@@ -44,10 +41,11 @@ set( GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE )
 find_path(GLEW_INCLUDE_DIR GL/glew.h)
 find_package(GLEW 2.1.0 REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
-find_package(CppLogger REQUIRED)
+find_package(glm REQUIRED)
+find_package(OpenCV REQUIRED)
 
-target_include_directories(42ngine PUBLIC ${INCLUDE_DIRECTORIES} ${OPENGL_INCLUDE_DIR} ${CPPLOGGER_INCLUDE_DIR})
-target_link_libraries(42ngine imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} ${CPPLOGGER_LIBRARY})
+target_include_directories(42ngine PUBLIC ${INCLUDE_DIRECTORIES} ${OPENGL_INCLUDE_DIR} libs)
+target_link_libraries(42ngine glm imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} CppLogger)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
     install(TARGETS 42ngine DESTINATION lib)
