@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../42ngine.h"
+#include "Application.h"
 
 extern ftn::Application* ftn::createApplication();
 

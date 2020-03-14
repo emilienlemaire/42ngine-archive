@@ -31,24 +31,18 @@ endif()
 add_subdirectory(libs/imgui)
 
 add_library(42ngine STATIC
-        42ngine.h
-        src/Window.cpp
+        src/Core/Application.cpp
+        src/BufferLayout.cpp
+        src/Camera.cpp
+        src/CameraController.cpp
+        src/IndexBuffer.cpp
+        src/Renderer.cpp
+        src/Shader.cpp
+        src/Texture.cpp
         src/VertexArray.cpp
         src/VertexBuffer.cpp
-        src/Shader.cpp
-        src/IndexBuffer.cpp
-        src/IndexBuffer.h
-        src/Core/Application.cpp
-        src/Core/Application.h
-        src/Renderer.cpp
-        src/Renderer.h
-        src/Camera.cpp
-        src/Camera.h
-        src/BufferLayout.cpp
-        src/BufferLayout.h
-        src/Texture.cpp
-        src/Texture.h
-        src/Core/EntryPoint.h)
+        src/Window.cpp
+        )
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE )
 set( GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE )
@@ -59,10 +53,11 @@ find_package(GLEW 2.1.0 REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(glm REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(CppLogger REQUIRED)
 
 target_include_directories(42ngine PUBLIC ${OPENGL_INCLUDE_DIR} libs)
-target_include_directories(42ngine PRIVATE .)
-target_link_libraries(42ngine glm imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} CppLogger)
+target_include_directories(42ngine PRIVATE src)
+target_link_libraries(42ngine glm imgui glfw GLEW::GLEW ${OPENCV_LIBS} ${OPENGL_gl_LIBRARY} ${CPPLOGGER_LIBRARY})
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     install(TARGETS 42ngine DESTINATION lib)
@@ -74,4 +69,5 @@ add_executable(demos
         demos/Sandbox.cpp
         )
 
+target_include_directories(demos PRIVATE include)
 target_link_libraries(demos 42ngine)

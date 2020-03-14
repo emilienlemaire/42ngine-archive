@@ -7,6 +7,7 @@
  */
 #pragma once
 
+#include <memory>
 #include "../Window.h"
 
 namespace ftn {
